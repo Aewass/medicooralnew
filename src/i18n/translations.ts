@@ -86,6 +86,59 @@ export const translations = {
           - Otkrivanja skrivenih karijesa
           - Planiranja ortodontskih tretmana`,
         },
+        {
+          title: "Prosthetics",
+          slug: "prosthetics",
+          description:
+            "Modern prosthetic solutions for a natural smile and complete functionality.",
+          fullDescription: `In the field of dental prosthetics, we are dedicated to creating natural and long-lasting solutions that will restore your confidence and functionality.
+
+          Our prosthetic solutions include:
+          - Individual crowns made from the highest quality materials
+          - Bridges for multiple tooth replacement
+          - Latest generation partial and complete dentures
+          - CAD/CAM technology for precise prosthetic work fabrication
+
+          Each prosthetic work is the result of precise planning and careful fabrication, where we pay special attention to aesthetics and natural appearance.
+
+          We use state-of-the-art materials that ensure:
+          - Long-term durability
+          - Natural appearance
+          - Optimal functionality
+          - Maximum comfort
+
+          Our team will guide you through the entire process, from initial consultation to final fitting, ensuring that your new teeth meet both functional and aesthetic requirements.`,
+        },
+        {
+          title: "X-Ray",
+          slug: "xray",
+          description:
+            "Digital X-ray diagnostics for precise treatment planning.",
+          fullDescription: `Our clinic is equipped with state-of-the-art digital X-ray equipment that enables:
+
+          - Precise 3D diagnostics
+          - Minimal radiation exposure
+          - Detailed analysis of bone and tooth structure
+          - Planning of implantological and other surgical procedures
+
+          Digital technology allows us to immediately show and explain the condition of your teeth and plan the best treatment.
+
+          Our advanced imaging is particularly valuable for:
+          - Planning implant procedures
+          - TMJ joint diagnostics
+          - Detection of hidden cavities
+          - Planning orthodontic treatments
+          - Comprehensive oral health assessment
+
+          Benefits of our digital X-ray technology:
+          - Instant image availability
+          - Enhanced diagnostic accuracy
+          - Reduced radiation exposure
+          - Better patient communication
+          - Digital storage for progress tracking
+
+          We use this technology as part of our commitment to providing the most accurate diagnoses and treatment plans for our patients.`,
+        },
       ],
     },
     about: {
@@ -252,14 +305,55 @@ export const translations = {
         {
           title: "Prosthetics",
           slug: "prosthetics",
-          description: "Modern prosthetic solutions...",
-          fullDescription: `...`,
+          description:
+            "Modern prosthetic solutions for a natural smile and complete functionality.",
+          fullDescription: `In the field of dental prosthetics, we are dedicated to creating natural and long-lasting solutions that will restore your confidence and functionality.
+
+          Our prosthetic solutions include:
+          - Individual crowns made from the highest quality materials
+          - Bridges for multiple tooth replacement
+          - Latest generation partial and complete dentures
+          - CAD/CAM technology for precise prosthetic work fabrication
+
+          Each prosthetic work is the result of precise planning and careful fabrication, where we pay special attention to aesthetics and natural appearance.
+
+          We use state-of-the-art materials that ensure:
+          - Long-term durability
+          - Natural appearance
+          - Optimal functionality
+          - Maximum comfort
+
+          Our team will guide you through the entire process, from initial consultation to final fitting, ensuring that your new teeth meet both functional and aesthetic requirements.`,
         },
         {
           title: "X-Ray",
           slug: "xray",
-          description: "Digital X-ray diagnostics...",
-          fullDescription: `...`,
+          description:
+            "Digital X-ray diagnostics for precise treatment planning.",
+          fullDescription: `Our clinic is equipped with state-of-the-art digital X-ray equipment that enables:
+
+          - Precise 3D diagnostics
+          - Minimal radiation exposure
+          - Detailed analysis of bone and tooth structure
+          - Planning of implantological and other surgical procedures
+
+          Digital technology allows us to immediately show and explain the condition of your teeth and plan the best treatment.
+
+          Our advanced imaging is particularly valuable for:
+          - Planning implant procedures
+          - TMJ joint diagnostics
+          - Detection of hidden cavities
+          - Planning orthodontic treatments
+          - Comprehensive oral health assessment
+
+          Benefits of our digital X-ray technology:
+          - Instant image availability
+          - Enhanced diagnostic accuracy
+          - Reduced radiation exposure
+          - Better patient communication
+          - Digital storage for progress tracking
+
+          We use this technology as part of our commitment to providing the most accurate diagnoses and treatment plans for our patients.`,
         },
       ],
     },
