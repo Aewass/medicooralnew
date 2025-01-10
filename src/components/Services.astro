@@ -44,22 +44,46 @@ const imageMap = {
       {uniqueServices.map((service, index) => {
         const serviceImage = imageMap[service.slug] || checkupImg;
         return (
-          <div class={`flex flex-col md:flex-row gap-8 md:gap-16 items-center group overflow-hidden ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+          <div class={`flex flex-col md:flex-row gap-8 md:gap-16 items-center group ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
             <div class="w-full md:w-1/2 relative">
-              <div class="absolute -inset-2 md:-inset-4 bg-secondary/10 rounded-3xl -rotate-6 scale-95 transition-transform duration-300 group-hover:rotate-0"></div>
-              <Image 
-                src={serviceImage}
-                alt={service.title}
-                class="rounded-3xl shadow-lg w-full max-w-lg mx-auto relative transition-all duration-300 group-hover:shadow-2xl group-hover:scale-[1.02]"
-                width={600}
-                height={600}
-                format="webp"
-                quality={90}
-              />
+              <!-- Enhanced image container with layered decorative elements -->
+              <div class="relative">
+                <!-- Background decorative elements -->
+                <div class="absolute -inset-2 md:-inset-4 bg-secondary/10 rounded-[2.5rem] -rotate-6 scale-95 transition-transform duration-300 group-hover:rotate-0"></div>
+                <div class="absolute -inset-2 md:-inset-4 bg-primary/5 rounded-[2.5rem] rotate-3 scale-95 transition-transform duration-300 group-hover:rotate-0"></div>
+                
+                <!-- Decorative circles -->
+                <div class="absolute -top-6 -right-6 w-24 h-24 bg-secondary/10 rounded-full blur-xl transition-all duration-500 group-hover:scale-150 group-hover:opacity-50"></div>
+                <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-primary/10 rounded-full blur-xl transition-all duration-500 group-hover:scale-150 group-hover:opacity-50"></div>
+                
+                <!-- Main image container -->
+                <div class="relative rounded-3xl overflow-hidden shadow-lg transition-all duration-500 group-hover:shadow-2xl">
+                  <!-- Hover overlay -->
+                  <div class="absolute inset-0 bg-gradient-to-tr from-black/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 z-10"></div>
+                  
+                  <!-- Corner accent -->
+                  <div class="absolute -top-10 -right-10 w-20 h-20 bg-secondary/10 rounded-full transform rotate-45 transition-all duration-500 group-hover:scale-150 group-hover:rotate-90"></div>
+                  
+                  <!-- Main image -->
+                  <Image 
+                    src={serviceImage}
+                    alt={service.title}
+                    width={600}
+                    height={600}
+                    class="w-full aspect-[4/3] object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
+                    format="webp"
+                    quality={90}
+                  />
+                  
+                  <!-- Bottom gradient overlay -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                </div>
+              </div>
             </div>
-            <div class="w-full md:w-1/2 relative">
+
+            <div class="w-full md:w-1/2">
               <div class="space-y-6">
-                <h3 class="text-2xl md:text-3xl font-primary font-bold text-text-secondary transition-all duration-300 group-hover:text-secondary">
+                <h3 class="text-2xl md:text-3xl font-primary font-bold text-text-secondary transition-colors duration-300 group-hover:text-secondary">
                   {service.title}
                 </h3>
                 <div class="w-20 h-1 bg-secondary/30 rounded-full transition-all duration-300 group-hover:w-32 group-hover:bg-secondary"></div>
@@ -68,10 +92,10 @@ const imageMap = {
                 </p>
                 <a 
                   href={`/${currentLang}/service/${service.slug}`}
-                  class="text-secondary hover:text-secondary/80 font-semibold inline-flex items-center gap-2 transition-all duration-300 hover:gap-4"
+                  class="inline-flex items-center gap-2 text-secondary hover:text-primary font-semibold transition-all duration-300 hover:gap-4"
                   aria-label={`${t.learnMore} ${t.about} ${service.title}`}
                 >
-                  {t.learnMore}
+                  <span>{t.learnMore}</span>
                   <ArrowRight class="w-5 h-5" aria-hidden="true" />
                 </a>
               </div>
