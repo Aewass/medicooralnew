@@ -5,6 +5,7 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://medicooral.com",
+  // site: "https://medicooral-dev.netlify.app",
+  site: "https://enchanting-tanuki-7ca24b.netlify.app",
   integrations: [tailwind()],
 });

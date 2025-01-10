@@ -64,14 +64,20 @@ export const translations = {
 
           Svaki protetski rad je rezultat preciznog planiranja i pažljive izrade, gdje posebnu pažnju posvećujemo estetici i prirodnom izgledu.
 
-          Koristimo najsavremenije materijale koji osiguravaju dugotrajnost i prirodan izgled vaših novih zuba.`,
+          Koristimo najsavremenije materijale koji osiguravaju:
+          - Dugotrajnost
+          - Prirodan izgled
+          - Optimalnu funkcionalnost
+          - Maksimalnu udobnost
+
+          Naš tim će vas voditi kroz cijeli proces, od početne konsultacije do konačnog postavljanja, osiguravajući da vaši novi zubi ispunjavaju i funkcionalne i estetske zahtjeve.`,
         },
         {
           title: "Rendgen",
           slug: "rendgen",
           description:
             "Digitalna rendgen dijagnostika za precizno planiranje tretmana.",
-          fullDescription: `Naša klinika je opremljena najsavremenijom digitalnom rendgen opremom koja omogućava:
+          fullDescription: `Naša ordinacija je opremljena najsavremenijom digitalnom rendgen opremom koja omogućava:
 
           - Preciznu 3D dijagnostiku
           - Minimalno izlaganje zračenju
@@ -80,11 +86,19 @@ export const translations = {
 
           Digitalna tehnologija nam omogućava da vam odmah pokažemo i objasnimo stanje vaših zuba i planiramo najbolji tretman.
 
-          Posebno je značajna kod:
-          - Planiranja implantoloških zahvata
-          - Dijagnostike problema sa TMJ zglobom
-          - Otkrivanja skrivenih karijesa
-          - Planiranja ortodontskih tretmana`,
+          Naša napredna dijagnostika je posebno vrijedna za:
+          - Planiranje implantoloških zahvata
+          - Dijagnostiku TMJ zgloba
+          - Otkrivanje skrivenih karijesa
+          - Planiranje ortodontskih tretmana
+          - Sveobuhvatnu procjenu oralnog zdravlja
+
+          Prednosti naše digitalne rendgen tehnologije:
+          - Trenutna dostupnost snimaka
+          - Poboljšana dijagnostička preciznost
+          - Smanjeno izlaganje zračenju
+          - Bolja komunikacija s pacijentom
+          - Digitalno pohranjivanje za praćenje napretka`,
         },
         {
           title: "Prosthetics",
@@ -285,22 +299,31 @@ export const translations = {
           title: "Dental Checkup",
           slug: "dental-checkup",
           description:
-            "Complete dental examination with state-of-the-art equipment...",
-          fullDescription: `A comprehensive dental checkup is the foundation of good oral health. Our team uses state-of-the-art equipment to thoroughly examine your teeth, gums, and entire oral cavity.
+            "Complete dental examination with state-of-the-art diagnostic equipment.",
+          fullDescription: `Our dental checkup is a comprehensive process that includes several key steps:
 
-          During the examination, we use digital X-rays and intraoral cameras that allow us to see even the smallest changes in your teeth. This helps us detect potential problems early before they become more serious.
+          Detailed oral health analysis using state-of-the-art diagnostic equipment allows us to detect even the smallest changes in teeth and surrounding tissue.
 
-          After the examination, we develop a personalized treatment plan that meets your needs and desires. We explain all treatment options and help you make an informed decision about your oral health.`,
+          We pay special attention to prevention, where through thorough examination we can detect potential problems before they become more serious.
+
+          We use digital technologies for precise documentation of your teeth condition and planning of possible treatments.
+
+          After the examination, you will receive a detailed treatment plan with all necessary information and recommendations for maintaining oral health.`,
         },
         {
           title: "Implantology",
           slug: "implantology",
-          description: "Premium implant solutions with guaranteed results...",
+          description:
+            "Premium implant solutions with guaranteed results and long-term stability.",
           fullDescription: `Our clinic specializes in state-of-the-art implant procedures. We use the highest quality implants that are the result of years of research and development.
 
           The implantation process begins with detailed analysis and planning using 3D imaging. This allows us to precisely place the implant and achieve optimal results.
 
-          Thanks to our experience and advanced technology, the process is minimally invasive and safe. After the procedure, we monitor the recovery process and ensure long-term implant success.`,
+          Thanks to our experience and advanced technology, the process is minimally invasive and safe. After the procedure, we monitor the recovery process and ensure long-term implant success.
+
+          We offer various types of implant solutions, including single implants, implant bridges, and All-on-4 solutions for edentulous jaws.
+
+          Each treatment is personalized according to your needs, taking into account anatomy, aesthetic desires, and functional requirements.`,
         },
         {
           title: "Prosthetics",

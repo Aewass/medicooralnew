@@ -9,10 +9,15 @@ import xrayImg from '../assets/xray.jpg';
 const currentLang = Astro.url.pathname.split('/')[1] || 'bs';
 const t = translations[currentLang].services;
 
-// Get unique services based on slug
-const uniqueServices = t.items.filter((service, index, self) =>
-  index === self.findIndex((s) => s.slug === service.slug)
-);
+// Filter services based on current language
+const uniqueServices = t.items.filter(service => {
+  // For BS language, only show BS services
+  if (currentLang === 'bs') {
+    return ['stomatoloski-pregled', 'implantologija', 'protetika', 'rendgen'].includes(service.slug);
+  }
+  // For EN language, only show EN services
+  return ['dental-checkup', 'implantology', 'prosthetics', 'xray'].includes(service.slug);
+});
 
 const imageMap = {
   'stomatoloski-pregled': checkupImg,
