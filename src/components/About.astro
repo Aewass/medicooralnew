@@ -17,13 +17,13 @@ const t = translations[currentLang].about;
         <div class="absolute -inset-2 md:-inset-4 bg-secondary/10 rounded-[2.5rem] -rotate-6 scale-95 transition-transform duration-300 group-hover:rotate-0"></div>
         <div class="absolute -inset-2 md:-inset-4 bg-primary/5 rounded-[2.5rem] rotate-3 scale-95 transition-transform duration-300 group-hover:rotate-0"></div>
         
-        <!-- Main image container -->
-        <div class="relative h-[600px] rounded-3xl overflow-hidden shadow-xl transition-all duration-300 group-hover:shadow-2xl">
+        <!-- Main image container - reduced height from 600px to 500px -->
+        <div class="relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden shadow-xl transition-all duration-300 group-hover:shadow-2xl">
           <Image
             src={clinicImage}
             alt="MedicoOral-AS Clinic"
             width={800}
-            height={600}
+            height={500}
             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
           <!-- Gradient overlay -->

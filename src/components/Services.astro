@@ -46,39 +46,50 @@ const imageMap = {
         return (
           <div class={`flex flex-col md:flex-row gap-8 md:gap-16 items-center group ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
             <div class="w-full md:w-1/2 relative">
-              <!-- Enhanced image container with layered decorative elements -->
-              <div class="relative">
-                <!-- Background decorative elements -->
-                <div class="absolute -inset-2 md:-inset-4 bg-secondary/10 rounded-[2.5rem] -rotate-6 scale-95 transition-transform duration-300 group-hover:rotate-0"></div>
-                <div class="absolute -inset-2 md:-inset-4 bg-primary/5 rounded-[2.5rem] rotate-3 scale-95 transition-transform duration-300 group-hover:rotate-0"></div>
-                
-                <!-- Decorative circles -->
-                <div class="absolute -top-6 -right-6 w-24 h-24 bg-secondary/10 rounded-full blur-xl transition-all duration-500 group-hover:scale-150 group-hover:opacity-50"></div>
-                <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-primary/10 rounded-full blur-xl transition-all duration-500 group-hover:scale-150 group-hover:opacity-50"></div>
-                
-                <!-- Main image container -->
-                <div class="relative rounded-3xl overflow-hidden shadow-lg transition-all duration-500 group-hover:shadow-2xl">
-                  <!-- Hover overlay -->
-                  <div class="absolute inset-0 bg-gradient-to-tr from-black/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 z-10"></div>
+              <!-- Wrap the entire image container with a link -->
+              <a 
+                href={`/${currentLang}/service/${service.slug}`}
+                class="block relative group/image"
+                aria-label={`${t.learnMore} ${t.about} ${service.title}`}
+              >
+                <!-- Enhanced image container with layered decorative elements -->
+                <div class="relative">
+                  <!-- Background decorative elements -->
+                  <div class="absolute -inset-2 md:-inset-4 bg-secondary/10 rounded-[2.5rem] -rotate-6 scale-95 transition-transform duration-300 group-hover:rotate-0"></div>
+                  <div class="absolute -inset-2 md:-inset-4 bg-primary/5 rounded-[2.5rem] rotate-3 scale-95 transition-transform duration-300 group-hover:rotate-0"></div>
                   
-                  <!-- Corner accent -->
-                  <div class="absolute -top-10 -right-10 w-20 h-20 bg-secondary/10 rounded-full transform rotate-45 transition-all duration-500 group-hover:scale-150 group-hover:rotate-90"></div>
+                  <!-- Decorative circles -->
+                  <div class="absolute -top-6 -right-6 w-24 h-24 bg-secondary/10 rounded-full blur-xl transition-all duration-500 group-hover:scale-150 group-hover:opacity-50"></div>
+                  <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-primary/10 rounded-full blur-xl transition-all duration-500 group-hover:scale-150 group-hover:opacity-50"></div>
                   
-                  <!-- Main image -->
-                  <Image 
-                    src={serviceImage}
-                    alt={service.title}
-                    width={600}
-                    height={600}
-                    class="w-full aspect-[4/3] object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
-                    format="webp"
-                    quality={90}
-                  />
-                  
-                  <!-- Bottom gradient overlay -->
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                  <!-- Main image container -->
+                  <div class="relative rounded-3xl overflow-hidden shadow-lg transition-all duration-500 group-hover:shadow-2xl">
+                    <!-- Hover overlay with "Learn More" text -->
+                    <div class="absolute inset-0 bg-gradient-to-tr from-black/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 z-10 flex items-center justify-center">
+                      <span class="text-white font-medium px-6 py-3 rounded-full bg-secondary/80 backdrop-blur-sm transform translate-y-4 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                        {t.learnMore}
+                      </span>
+                    </div>
+                    
+                    <!-- Corner accent -->
+                    <div class="absolute -top-10 -right-10 w-20 h-20 bg-secondary/10 rounded-full transform rotate-45 transition-all duration-500 group-hover:scale-150 group-hover:rotate-90"></div>
+                    
+                    <!-- Main image -->
+                    <Image 
+                      src={serviceImage}
+                      alt={service.title}
+                      width={600}
+                      height={600}
+                      class="w-full aspect-[4/3] object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
+                      format="webp"
+                      quality={90}
+                    />
+                    
+                    <!-- Bottom gradient overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                  </div>
                 </div>
-              </div>
+              </a>
             </div>
 
             <div class="w-full md:w-1/2">

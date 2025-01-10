@@ -16,22 +16,21 @@ const t = translations[currentLang].hero;
       alt="Hero background"
       class="w-full h-full object-cover object-[80%_center] scale-[1.1] transition-all duration-[2s] animate-ken-burns"
     />
-    <!-- Overlay gradients -->
-    <div class="absolute inset-0 bg-gradient-to-r from-white/80 to-transparent"></div>
-  </div>
+      <div class="absolute inset-0 bg-white/80 backdrop-blur-sm"></div>
+    </div>
 
   <!-- Content Container -->
   <div class="relative h-full max-w-7xl mx-auto px-5">
     <div class="h-full grid md:grid-cols-2 items-center gap-8">
       <!-- Left Content -->
       <div class="relative space-y-8">
-        <!-- Floating Elements -->
-        <div class="absolute -top-20 -left-10 w-40 h-40 bg-secondary/10 rounded-full blur-3xl animate-pulse"></div>
-        <div class="absolute -bottom-20 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl animate-pulse delay-700"></div>
+        <!-- Enhanced floating elements -->
+        <div class="absolute -top-20 -left-10 w-40 h-40 bg-secondary/20 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute -bottom-20 -right-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl animate-pulse delay-700"></div>
         
         <!-- Main Content -->
         <div class="relative space-y-8">
-          <span class="inline-block text-secondary text-sm font-medium tracking-wider uppercase bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 shadow-sm">
+          <span class="inline-block text-secondary text-sm font-medium tracking-wider uppercase bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg">
             MedicoOral-AS
           </span>
 
@@ -43,13 +42,13 @@ const t = translations[currentLang].hero;
             {t.subtitle}
           </p>
 
-          <!-- Cards Grid -->
+          <!-- Stats Cards with enhanced shadows -->
           <div class="grid grid-cols-2 gap-4 pt-4">
-            <div class="bg-white/60 backdrop-blur-sm p-4 rounded-2xl shadow-lg">
+            <div class="bg-white/80 backdrop-blur-sm p-4 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.2)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.25)] transition-shadow duration-300">
               <div class="text-3xl font-bold text-secondary mb-2">40+</div>
               <div class="text-sm text-text-secondary">{t.yearsExp}</div>
             </div>
-            <div class="bg-white/60 backdrop-blur-sm p-4 rounded-2xl shadow-lg">
+            <div class="bg-white/80 backdrop-blur-sm p-4 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.2)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.25)] transition-shadow duration-300">
               <div class="text-3xl font-bold text-primary mb-2">5k+</div>
               <div class="text-sm text-text-secondary">{t.happyPatients}</div>
             </div>
@@ -69,11 +68,11 @@ const t = translations[currentLang].hero;
         </div>
       </div>
 
-      <!-- Right Side Cards -->
+      <!-- Right Side Cards with enhanced shadows -->
       <div class="hidden md:flex relative h-full items-center">
         <div class="absolute inset-y-0 left-0 w-full">
           <!-- Top Feature Card -->
-          <div class="absolute top-1/4 left-0 bg-white/60 backdrop-blur-sm p-6 rounded-2xl shadow-lg transform -rotate-6 hover:rotate-0 transition-all duration-300 group">
+          <div class="absolute top-1/4 left-0 bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.2)] transform -rotate-6 hover:rotate-0 hover:shadow-[0_8px_30px_rgb(0,0,0,0.25)] transition-all duration-300 group">
             <div class="flex items-start gap-4">
               <div class="p-3 bg-secondary/10 rounded-xl">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -88,7 +87,7 @@ const t = translations[currentLang].hero;
           </div>
 
           <!-- Bottom Feature Card -->
-          <div class="absolute top-1/2 left-20 bg-white/60 backdrop-blur-sm p-6 rounded-2xl shadow-lg transform rotate-6 hover:rotate-0 transition-all duration-300 group">
+          <div class="absolute top-1/2 left-20 bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.2)] transform rotate-6 hover:rotate-0 hover:shadow-[0_8px_30px_rgb(0,0,0,0.25)] transition-all duration-300 group">
             <div class="flex items-start gap-4">
               <div class="p-3 bg-primary/10 rounded-xl">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -103,7 +102,7 @@ const t = translations[currentLang].hero;
           </div>
 
           <!-- Additional Feature Card -->
-          <div class="absolute top-3/4 left-10 bg-white/60 backdrop-blur-sm p-6 rounded-2xl shadow-lg transform -rotate-3 hover:rotate-0 transition-all duration-300 group">
+          <div class="absolute top-3/4 left-10 bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.2)] transform -rotate-3 hover:rotate-0 hover:shadow-[0_8px_30px_rgb(0,0,0,0.25)] transition-all duration-300 group">
             <div class="flex items-start gap-4">
               <div class="p-3 bg-secondary/10 rounded-xl">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -121,11 +120,11 @@ const t = translations[currentLang].hero;
     </div>
   </div>
 
-  <!-- Scroll Indicator -->
+  <!-- Scroll Indicator with enhanced shadow -->
   <div class="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in">
     <button 
       onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})"
-      class="p-3 rounded-full bg-secondary text-white hover:bg-primary transition-all duration-300 shadow-lg hover:shadow-xl"
+      class="p-3 rounded-full bg-secondary text-white hover:bg-primary transition-all duration-300 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.16)]"
       aria-label="Scroll to services"
     >
       <ArrowDown class="h-5 w-5 animate-bounce" aria-hidden="true" />
