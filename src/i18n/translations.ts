@@ -13,6 +13,14 @@ export const translations = {
       subtitle:
         "Vaše zdravlje je naš prioritet. Pružamo vrhunsku stomatološku njegu uz moderne tehnologije i stručni tim.",
       cta: "Pogledajte naše usluge",
+      yearsExp: "Godina iskustva",
+      happyPatients: "Zadovoljnih pacijenata",
+      modernEquipment: "Moderna oprema",
+      modernEquipmentDesc: "Najsavremenija stomatološka tehnologija",
+      expertCare: "Stručna njega",
+      expertCareDesc: "Profesionalni stomatološki specijalisti",
+      quickService: "Brza usluga",
+      quickServiceDesc: "Minimalno vrijeme čekanja",
     },
     services: {
       title: "Naše usluge",
@@ -290,6 +298,14 @@ export const translations = {
       subtitle:
         "Your health is our priority. We provide premium dental care with modern technology and professional team.",
       cta: "View our services",
+      yearsExp: "Years Experience",
+      happyPatients: "Happy Patients",
+      modernEquipment: "Modern Equipment",
+      modernEquipmentDesc: "State-of-the-art dental technology",
+      expertCare: "Expert Care",
+      expertCareDesc: "Professional dental specialists",
+      quickService: "Quick Service",
+      quickServiceDesc: "Minimal waiting times",
     },
     services: {
       title: "Our Services",
