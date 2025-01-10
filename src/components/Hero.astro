@@ -9,40 +9,40 @@ const t = translations[currentLang].hero;
 ---
 
 <section class="relative w-full h-screen overflow-hidden">
-  <!-- Background Image with enhanced effects -->
+  <!-- Background Image with refined effects -->
   <div class="absolute inset-0 w-full h-full">
-    <!-- Increased overlay opacity for better contrast -->
-    <div class="absolute inset-0 bg-black/50"></div>
     <Image
       src={heroImage}
       alt="Hero background"
-      class="w-full h-full object-cover object-[80%_center] scale-[1.1] filter contrast-125 brightness-75 transition-all duration-[2s] animate-ken-burns"
+      class="w-full h-full object-cover object-[80%_center] scale-[1.1] transition-all duration-[2s] animate-ken-burns"
     />
-    <!-- Enhanced gradient overlay -->
-    <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/30"></div>
+    <!-- White overlay gradients for softer contrast -->
+    <div class="absolute inset-0 bg-gradient-to-r from-white/50 via-white/30 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-white/40 via-white/20 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-white/30 via-transparent to-transparent"></div>
   </div>
 
-  <!-- Content -->
+  <!-- Content with dark text for contrast against white overlay -->
   <div class="relative h-full max-w-7xl mx-auto flex items-center px-5">
     <div class="max-w-2xl space-y-8">
-      <!-- Label with increased contrast -->
-      <span class="inline-block text-secondary text-sm font-medium tracking-wider uppercase bg-black/30 backdrop-blur-sm rounded-full px-4 py-2">
+      <!-- Label -->
+      <span class="inline-block text-secondary text-sm font-medium tracking-wider uppercase bg-white/80 backdrop-blur-sm rounded-full px-4 py-2">
         MedicoOral-AS
       </span>
 
-      <!-- Title with enhanced text shadow -->
-      <h1 class="text-5xl md:text-6xl lg:text-7xl font-primary font-bold text-white [text-wrap:balance] leading-[1.1] drop-shadow-[0_4px_3px_rgba(0,0,0,0.5)] bg-clip-text">
+      <!-- Title -->
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-primary font-bold text-primary [text-wrap:balance] leading-[1.1]">
         {t.title}
       </h1>
 
-      <!-- Subtitle with enhanced visibility -->
-      <p class="text-xl md:text-2xl text-white font-medium leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
+      <!-- Subtitle -->
+      <p class="text-xl md:text-2xl text-text-secondary font-medium leading-relaxed">
         {t.subtitle}
       </p>
 
       <!-- CTA Button -->
       <div class="relative group inline-block">
-        <div class="absolute -inset-1 bg-white/20 rounded-full blur-sm transition-all duration-300 opacity-0 group-hover:opacity-100"></div>
+        <div class="absolute -inset-1 bg-secondary/10 rounded-full blur-md transition-all duration-300 opacity-0 group-hover:opacity-100"></div>
         
         <button 
           onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})"
@@ -55,9 +55,15 @@ const t = translations[currentLang].hero;
     </div>
   </div>
 
-  <!-- Scroll Indicator - ensure it stays within bounds -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in w-6">
-    <ArrowDown class="h-6 w-6 text-white opacity-90 animate-bounce" aria-hidden="true" />
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in">
+    <button 
+      onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})"
+      class="p-3 rounded-full bg-secondary text-white hover:bg-primary transition-all duration-300 shadow-lg hover:shadow-xl"
+      aria-label="Scroll to services"
+    >
+      <ArrowDown class="h-5 w-5 animate-bounce" aria-hidden="true" />
+    </button>
   </div>
 </section>
 
