@@ -28,15 +28,11 @@ const images = [person1, person2, person3];
     <!-- Testimonials Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {t.items.map((testimonial, index) => (
-        <div class="group relative overflow-hidden">
-          <!-- Decorative backgrounds -->
-          <div class="absolute -inset-2 md:-inset-4 bg-secondary/5 rounded-[2rem] -rotate-3 scale-95 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:rotate-0"></div>
-          <div class="absolute -inset-2 md:-inset-4 bg-primary/5 rounded-[2rem] rotate-2 scale-95 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:rotate-0"></div>
-          
+        <div class="group h-full">
           <!-- Card -->
-          <div class="relative p-8 rounded-2xl bg-white shadow-lg transition-all duration-300 group-hover:shadow-xl">
+          <div class="relative h-full p-8 rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl flex flex-col">
             <!-- Quote icon -->
-            <div class="mb-6">
+            <div class="mb-6 flex-shrink-0">
               <Image 
                 src={quoteIcon} 
                 alt="Quote" 
@@ -47,7 +43,7 @@ const images = [person1, person2, person3];
             </div>
 
             <!-- Profile -->
-            <div class="flex items-center gap-4 mb-6">
+            <div class="flex items-center gap-4 mb-6 flex-shrink-0">
               <div class="relative">
                 <div class="absolute inset-0 bg-secondary/10 rounded-full scale-110 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
                 <div class="relative w-14 h-14 rounded-full overflow-hidden shadow-md transition-transform duration-300 group-hover:scale-105">
@@ -71,7 +67,7 @@ const images = [person1, person2, person3];
             </div>
 
             <!-- Testimonial text -->
-            <p class="text-text-secondary/80 leading-relaxed">
+            <p class="text-text-secondary/80 leading-relaxed flex-grow">
               "{testimonial.text}"
             </p>
           </div>

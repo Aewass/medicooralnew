@@ -11,8 +11,8 @@ export default {
         beige: "beige",
       },
       fontFamily: {
-        primary: ['"Wix Madefor Display"', "sans-serif"],
-        secondary: ['"Schibsted Grotesk"', "sans-serif"],
+        primary: ['"Plus Jakarta Sans"', "sans-serif"],
+        secondary: ['"Inter"', "sans-serif"],
       },
     },
   },

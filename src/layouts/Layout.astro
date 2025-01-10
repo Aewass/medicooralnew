@@ -8,7 +8,7 @@ const currentLang = Astro.url.pathname.split('/')[1] || 'bs';
 ---
 
 <!doctype html>
-<html lang={currentLang} class="scroll-smooth">
+<html lang={currentLang} class="scroll-smooth font-secondary">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="MedicoOral-AS - Stomatološka ordinacija u Bihaću. Pružamo vrhunske stomatološke usluge uz moderne tehnologije i stručni tim.">
@@ -17,7 +17,8 @@ const currentLang = Astro.url.pathname.split('/')[1] || 'bs';
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preload" as="image" href="/tooth.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <script>
       const observerOptions = {
         root: null,
