@@ -1,0 +1,79 @@
+---
+import { Image } from 'astro:assets';
+import { translations } from '../i18n/translations';
+import checkupImg from '../assets/checkup.jpg';
+import implantImg from '../assets/implant.jpg';
+import implant2Img from '../assets/implant2.jpg';
+import xrayImg from '../assets/xray.jpg';
+
+const currentLang = Astro.url.pathname.split('/')[1] || 'bs';
+const t = translations[currentLang].services;
+
+// Get unique services based on slug
+const uniqueServices = t.items.filter((service, index, self) =>
+  index === self.findIndex((s) => s.slug === service.slug)
+);
+
+const imageMap = {
+  'stomatoloski-pregled': checkupImg,
+  'dental-checkup': checkupImg,
+  'implantologija': implantImg,
+  'implantology': implantImg,
+  'protetika': implant2Img,
+  'prosthetics': implant2Img,
+  'rendgen': xrayImg,
+  'xray': xrayImg
+};
+---
+
+<section class="w-full py-20" id="services">
+  <div class="w-full max-w-7xl mx-auto px-5">
+    <div class="text-center mb-20">
+      <span class="text-secondary text-sm font-medium tracking-wider uppercase">{t.subtitle}</span>
+      <h2 class="text-4xl md:text-5xl font-primary font-bold mt-4 text-primary">{t.title}</h2>
+      <div class="w-20 h-1.5 bg-secondary mx-auto mt-6 rounded-full"></div>
+    </div>
+
+    <div class="space-y-32">
+      {uniqueServices.map((service, index) => {
+        const serviceImage = imageMap[service.slug] || checkupImg;
+        return (
+          <div class={`flex flex-col md:flex-row gap-8 md:gap-16 items-center group overflow-hidden ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+            <div class="w-full md:w-1/2 relative">
+              <div class="absolute -inset-2 md:-inset-4 bg-secondary/10 rounded-3xl -rotate-6 scale-95 transition-transform duration-300 group-hover:rotate-0"></div>
+              <Image 
+                src={serviceImage}
+                alt={service.title}
+                class="rounded-3xl shadow-lg w-full max-w-lg mx-auto relative transition-all duration-300 group-hover:shadow-2xl group-hover:scale-[1.02]"
+                width={600}
+                height={600}
+                format="webp"
+                quality={90}
+              />
+            </div>
+            <div class="w-full md:w-1/2 relative">
+              <div class="space-y-6">
+                <h3 class="text-2xl md:text-3xl font-primary font-bold text-text-secondary transition-all duration-300 group-hover:text-secondary">
+                  {service.title}
+                </h3>
+                <div class="w-20 h-1 bg-secondary/30 rounded-full transition-all duration-300 group-hover:w-32 group-hover:bg-secondary"></div>
+                <p class="text-lg text-text-secondary/80 leading-relaxed">
+                  {service.description}
+                </p>
+                <a 
+                  href={`/${currentLang}/service/${service.slug}`}
+                  class="text-secondary font-medium inline-flex items-center gap-2 transition-all duration-300 hover:gap-4"
+                >
+                  {t.learnMore}
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section> 

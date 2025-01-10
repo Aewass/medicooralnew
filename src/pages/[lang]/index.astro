@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Hero from '../../components/Hero.astro';
+import Services from '../../components/Services.astro';
+import About from '../../components/About.astro';
+import History from '../../components/History.astro';
+import Team from '../../components/Team.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import Faq from '../../components/Faq.astro';
+import Contact from '../../components/Contact.astro';
+import Footer from '../../components/Footer.astro';
+import ErrorBoundary from '../../components/ErrorBoundary.astro';
+
+// This needs to be exported as a named export
+export async function getStaticPaths() {
+  return [
+    { params: { lang: 'bs' } },
+    { params: { lang: 'en' } },
+  ];
+}
+
+// Get the lang param
+const { lang } = Astro.params;
+
+// Optionally validate the lang parameter
+if (!['bs', 'en'].includes(lang)) {
+  return Astro.redirect('/bs'); // Redirect to default language if invalid
+}
+---
+
+<Layout title="Medico Oral - AS">
+  <Navbar />
+  <div class="pt-20">
+    <Hero />
+    <Services />
+    <About />
+    <History />
+    <Team />
+    <Testimonials />
+    <Faq />
+    <Contact />
+    <Footer />
+    <ErrorBoundary />
+  </div>
+</Layout> 

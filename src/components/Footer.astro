@@ -1,0 +1,130 @@
+---
+import { 
+  CalendarCheck, 
+  MapPin, 
+  Phone, 
+  Mail,
+  Facebook,
+  Instagram
+} from 'lucide-astro';
+import { translations } from '../i18n/translations';
+
+const currentLang = Astro.url.pathname.split('/')[1] || 'bs';
+const t = translations[currentLang].footer;
+---
+
+<section data-bg="secondary" class="text-white">
+  <div class="w-full max-w-7xl mx-auto px-5 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <!-- Contact Info + Social Links -->
+      <div class="space-y-8">
+        <!-- Contact Info -->
+        <div class="relative group space-y-6">
+          <div class="absolute -inset-4 bg-white/5 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+          
+          <div class="relative">
+            <h3 class="text-2xl font-primary font-bold text-white">
+              {t.contact.title}
+            </h3>
+            <div class="w-12 h-1 bg-white/20 rounded-full mt-2"></div>
+          </div>
+
+          <ul class="relative space-y-4">
+            <li class="flex items-center gap-3 text-white/90 group/item">
+              <CalendarCheck size={20} class="flex-shrink-0 transition-colors duration-300 group-hover/item:text-white" />
+              <span class="transition-colors duration-300 group-hover/item:text-white">{t.contact.hours}</span>
+            </li>
+            <li class="flex items-center gap-3 text-white/90 group/item">
+              <MapPin size={20} class="flex-shrink-0 transition-colors duration-300 group-hover/item:text-white" />
+              <span class="transition-colors duration-300 group-hover/item:text-white">{t.contact.address}</span>
+            </li>
+            <li class="flex items-center gap-3 text-white/90 group/item">
+              <Phone size={20} class="flex-shrink-0 transition-colors duration-300 group-hover/item:text-white" />
+              <a href="tel:037310745" class="hover:text-white transition-colors">
+                {t.contact.phone}
+              </a>
+            </li>
+            <li class="flex items-center gap-3 text-white/90 group/item">
+              <Mail size={20} class="flex-shrink-0 transition-colors duration-300 group-hover/item:text-white" />
+              <a href="mailto:medicooral.as@gmail.com" class="hover:text-white transition-colors">
+                {t.contact.email}
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social Links -->
+        <div class="relative group space-y-4">
+          <div class="absolute -inset-4 bg-white/5 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+          
+          <div class="relative">
+            <h3 class="text-2xl font-primary font-bold text-white">
+              {t.social.title}
+            </h3>
+            <div class="w-12 h-1 bg-white/20 rounded-full mt-2"></div>
+          </div>
+
+          <div class="relative flex gap-4">
+            <a 
+              href="https://www.facebook.com/medicooralas" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="p-3 text-white/90 hover:text-white bg-white/5 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+              aria-label="Facebook"
+            >
+              <Facebook size={24} />
+            </a>
+            <a 
+              href="https://www.instagram.com/medicooralas/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="p-3 text-white/90 hover:text-white bg-white/5 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+              aria-label="Instagram"
+            >
+              <Instagram size={24} />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map -->
+      <div class="group">
+        <div class="relative">
+          <!-- Decorative elements -->
+          <div class="absolute -inset-4 bg-white/5 rounded-2xl -rotate-2 scale-95 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:rotate-0"></div>
+          <div class="absolute -inset-4 bg-white/5 rounded-2xl rotate-1 scale-95 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:rotate-0"></div>
+          
+          <!-- Map Container -->
+          <div class="relative w-full h-[400px] rounded-xl overflow-hidden shadow-lg transition-all duration-300 group-hover:shadow-xl">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2831.953546044284!2d15.868097776191685!3d44.81292897107275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47617e7e36fb8a2d%3A0x5e3f3eed85b2fc4a!2sDžemala%20Bijedića%2019%2C%20Bihać%2077000!5e0!3m2!1sen!2sba!4v1710425847387!5m2!1sen!2sba"
+              width="100%"
+              height="100%"
+              style="border:0;"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="MedicoOral-AS Location"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="mt-16 pt-8 border-t border-white/10">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-sm text-white/80">
+          {t.copyright.replace('{year}', new Date().getFullYear().toString())}
+        </p>
+        <a 
+          href="http://mirzamuric.com" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="text-sm text-white/80 hover:text-white transition-colors"
+        >
+          {t.developer}
+        </a>
+      </div>
+    </div>
+  </div>
+</section> 

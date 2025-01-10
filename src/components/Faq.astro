@@ -1,0 +1,95 @@
+---
+import { translations } from '../i18n/translations';
+
+const currentLang = Astro.url.pathname.split('/')[1] || 'bs';
+const t = translations[currentLang].faq;
+---
+
+<section class="w-full py-20" id="faq">
+  <div class="w-full max-w-7xl mx-auto px-5">
+    <!-- Header -->
+    <div class="text-center mb-16 space-y-4">
+      <span class="text-secondary text-sm font-medium tracking-wider uppercase">
+        {t.subtitle}
+      </span>
+      <h2 class="text-4xl md:text-5xl font-primary font-bold text-primary">
+        {t.title}
+      </h2>
+      <div class="w-20 h-1.5 bg-secondary rounded-full mx-auto"></div>
+    </div>
+
+    <!-- FAQ Items -->
+    <div class="max-w-3xl mx-auto space-y-6">
+      {t.items.map((faq, index) => (
+        <div class="group">
+          <div class="relative">
+            <!-- Decorative elements -->
+            <div class="absolute -inset-2 bg-secondary/5 rounded-xl scale-95 opacity-0 transition-all duration-300 group-hover:opacity-100"></div>
+            
+            <!-- FAQ Item -->
+            <div class="relative bg-white rounded-xl shadow-md transition-all duration-300 group-hover:shadow-lg">
+              <button
+                class="faq-toggle w-full text-left px-6 py-4 focus:outline-none"
+                data-index={index}
+              >
+                <div class="flex justify-between items-center gap-4">
+                  <h3 class="font-primary font-semibold text-lg text-primary transition-colors duration-300 group-hover:text-secondary">
+                    {faq.question}
+                  </h3>
+                  <svg
+                    class="w-6 h-6 transform transition-transform duration-300 faq-icon text-secondary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </div>
+              </button>
+              <div class="faq-content hidden px-6 pb-4">
+                <p class="text-text-secondary/80 leading-relaxed">{faq.answer}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  function initFAQ() {
+    const toggles = document.querySelectorAll('.faq-toggle');
+    
+    toggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const content = toggle.nextElementSibling as HTMLElement;
+        const icon = toggle.querySelector('.faq-icon');
+        
+        // Close all other FAQs
+        document.querySelectorAll('.faq-content').forEach(item => {
+          if (item !== content) {
+            item.classList.add('hidden');
+            const otherIcon = item.previousElementSibling?.querySelector('.faq-icon');
+            otherIcon?.classList.remove('rotate-180');
+          }
+        });
+        
+        // Toggle current FAQ
+        content.classList.toggle('hidden');
+        icon?.classList.toggle('rotate-180');
+      });
+    });
+  }
+
+  // Initialize on page load
+  initFAQ();
+
+  // Re-initialize after page transitions
+  document.addEventListener('astro:page-load', initFAQ);
+</script> 

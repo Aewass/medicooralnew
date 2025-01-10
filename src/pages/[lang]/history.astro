@@ -1,0 +1,92 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import { translations } from '../../i18n/translations';
+import prviImplant from '../../assets/prvi-implant.png';
+
+export function getStaticPaths() {
+  return [
+    {params: {lang: 'bs'}},
+    {params: {lang: 'en'}}
+  ];
+}
+
+const { lang } = Astro.params;
+const t = translations[lang].history;
+---
+
+<Layout title={t.title}>
+  <main class="py-20 md:py-32">
+    <div class="w-full max-w-7xl mx-auto px-5">
+      <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-20 space-y-4">
+          <span class="text-secondary text-sm font-medium tracking-wider uppercase">
+            {lang === 'bs' ? 'Naša historija' : 'Our history'}
+          </span>
+          <h1 class="text-4xl md:text-5xl font-primary font-bold text-primary">
+            {t.title}
+          </h1>
+          <div class="w-20 h-1.5 bg-secondary rounded-full mx-auto"></div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="space-y-20">
+          <!-- Hero Image -->
+          <div class="relative group overflow-hidden">
+            <div class="absolute -inset-2 md:-inset-4 bg-secondary/10 rounded-[2.5rem] -rotate-6 scale-95 transition-transform duration-300 group-hover:rotate-0"></div>
+            <div class="absolute -inset-2 md:-inset-4 bg-primary/5 rounded-[2.5rem] rotate-3 scale-95 transition-transform duration-300 group-hover:rotate-0"></div>
+            
+            <div class="relative rounded-3xl overflow-hidden shadow-xl transition-all duration-300 group-hover:shadow-2xl">
+              <Image
+                src={prviImplant}
+                alt={t.title}
+                width={1200}
+                height={675}
+                class="w-full h-full object-contain bg-white transition-transform duration-700 group-hover:scale-110"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+            </div>
+          </div>
+
+          <!-- Text Content -->
+          <div class="prose prose-lg max-w-none">
+            <div class="space-y-12">
+              {t.paragraphs.map((paragraph, index) => (
+                <div class="relative group p-6 -mx-6">
+                  <div class="absolute inset-0 bg-secondary/5 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                  <p class="relative text-lg text-text-secondary/80 leading-relaxed">
+                    {paragraph}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Back Button -->
+          <div class="pt-12">
+            <a 
+              href={`/${lang}/#history`}
+              class="inline-flex items-center gap-2 px-8 py-4 bg-secondary text-white rounded-full 
+                    hover:gap-4 transition-all duration-300 hover:bg-primary shadow-lg hover:shadow-xl group"
+            >
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                class="h-5 w-5 transition-transform duration-300 group-hover:-translate-x-1" 
+                viewBox="0 0 20 20" 
+                fill="currentColor"
+              >
+                <path 
+                  fill-rule="evenodd" 
+                  d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" 
+                  clip-rule="evenodd" 
+                />
+              </svg>
+              <span>{lang === 'bs' ? 'Nazad na početnu' : 'Back to home'}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout> 

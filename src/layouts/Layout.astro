@@ -1,0 +1,108 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+const currentLang = Astro.url.pathname.split('/')[1] || 'bs';
+---
+
+<!doctype html>
+<html lang={currentLang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="MedicoOral-AS - Stomatološka ordinacija u Bihaću. Pružamo vrhunske stomatološke usluge uz moderne tehnologije i stručni tim.">
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preload" as="image" href="/tooth.png">
+    <script>
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('[data-animate]').forEach((element) => {
+          observer.observe(element);
+        });
+      });
+    </script>
+  </head>
+  <body class="min-h-screen bg-white overflow-x-hidden">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  /* Add any global styles here */
+  section {
+    @apply relative w-full;
+  }
+
+  /* Fix for background color overflow */
+  section::before {
+    content: '';
+    @apply absolute inset-0 w-screen -z-10;
+  }
+
+  /* Apply background colors to specific sections */
+  section[data-bg="secondary"]::before {
+    @apply bg-[#1199ee];
+  }
+
+  section[data-bg="card"]::before {
+    @apply bg-[#e8f7ff];
+  }
+
+  /* Add after your existing styles */
+  section[data-pattern="grid"] {
+    position: relative;
+  }
+
+  section[data-pattern="grid"]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(to right, #1199ee10 1px, transparent 1px),
+      linear-gradient(to bottom, #1199ee10 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+  }
+
+  section[data-pattern="dots"] {
+    position: relative;
+  }
+
+  section[data-pattern="dots"]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(#1199ee10 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+  }
+
+  .floating {
+    animation: floating 3s ease-in-out infinite;
+  }
+
+  @keyframes floating {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(0, 10px); }
+    100% { transform: translate(0, 0); }
+  }
+</style> 

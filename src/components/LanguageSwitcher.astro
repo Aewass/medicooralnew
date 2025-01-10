@@ -1,0 +1,33 @@
+---
+const currentLang = Astro.url.pathname.split('/')[1] || 'bs';
+---
+
+<div class="relative inline-block">
+  <select 
+    id="language-select"
+    class="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2 pr-8 cursor-pointer hover:border-secondary focus:outline-none focus:border-secondary transition-colors"
+  >
+    <option value="bs" selected={currentLang === 'bs'}>Bosanski</option>
+    <option value="en" selected={currentLang === 'en'}>English</option>
+  </select>
+  <div class="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none">
+    <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </div>
+</div>
+
+<script>
+  const select = document.getElementById('language-select') as HTMLSelectElement;
+  
+  // Set initial value based on current URL
+  const currentLang = window.location.pathname.split('/')[1] || 'bs';
+  select.value = currentLang;
+  
+  // Handle language change
+  select.addEventListener('change', () => {
+    const newLang = select.value;
+    const currentPath = window.location.pathname.split('/').slice(2).join('/') || '';
+    window.location.href = `/${newLang}${currentPath ? '/' + currentPath : ''}`;
+  });
+</script> 

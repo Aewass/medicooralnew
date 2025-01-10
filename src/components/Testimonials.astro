@@ -1,0 +1,82 @@
+---
+import { Image } from 'astro:assets';
+import { translations } from '../i18n/translations';
+import person1 from '../assets/person1.jpeg';
+import person2 from '../assets/person2.jpeg';
+import person3 from '../assets/person3.jpeg';
+import quoteIcon from '../assets/icons/quote.svg';
+
+const currentLang = Astro.url.pathname.split('/')[1] || 'bs';
+const t = translations[currentLang].testimonials;
+
+const images = [person1, person2, person3];
+---
+
+<section class="w-full py-20" id="testimonials">
+  <div class="w-full max-w-7xl mx-auto px-5">
+    <!-- Header -->
+    <div class="text-center mb-16 space-y-4">
+      <span class="text-secondary text-sm font-medium tracking-wider uppercase">
+        {currentLang === 'bs' ? 'Iskustva naših pacijenata' : 'Patient testimonials'}
+      </span>
+      <h2 class="text-4xl md:text-5xl font-primary font-bold text-primary">
+        {t.title}
+      </h2>
+      <div class="w-20 h-1.5 bg-secondary rounded-full mx-auto"></div>
+    </div>
+
+    <!-- Testimonials Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {t.items.map((testimonial, index) => (
+        <div class="group relative overflow-hidden">
+          <!-- Decorative backgrounds -->
+          <div class="absolute -inset-2 md:-inset-4 bg-secondary/5 rounded-[2rem] -rotate-3 scale-95 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:rotate-0"></div>
+          <div class="absolute -inset-2 md:-inset-4 bg-primary/5 rounded-[2rem] rotate-2 scale-95 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:rotate-0"></div>
+          
+          <!-- Card -->
+          <div class="relative p-8 rounded-2xl bg-white shadow-lg transition-all duration-300 group-hover:shadow-xl">
+            <!-- Quote icon -->
+            <div class="mb-6">
+              <Image 
+                src={quoteIcon} 
+                alt="Quote" 
+                width={40} 
+                height={40} 
+                class="text-secondary opacity-50 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110"
+              />
+            </div>
+
+            <!-- Profile -->
+            <div class="flex items-center gap-4 mb-6">
+              <div class="relative">
+                <div class="absolute inset-0 bg-secondary/10 rounded-full scale-110 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                <div class="relative w-14 h-14 rounded-full overflow-hidden shadow-md transition-transform duration-300 group-hover:scale-105">
+                  <Image 
+                    src={images[index]} 
+                    alt={testimonial.name}
+                    width={56}
+                    height={56}
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+              <div class="space-y-1">
+                <h3 class="font-primary font-bold text-lg text-primary transition-colors duration-300 group-hover:text-secondary">
+                  {testimonial.name}
+                </h3>
+                <span class="text-sm text-text-secondary/60">
+                  {currentLang === 'bs' ? 'Pacijent' : 'Patient'}
+                </span>
+              </div>
+            </div>
+
+            <!-- Testimonial text -->
+            <p class="text-text-secondary/80 leading-relaxed">
+              "{testimonial.text}"
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section> 
