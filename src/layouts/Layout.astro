@@ -1,52 +1,80 @@
 ---
 interface Props {
   title: string;
+  description?: string;
+  image?: string;
+  article?: boolean;
 }
 
-const { title } = Astro.props;
+const { 
+  title, 
+  description = "MedicoOral - Stomatološka ordinacija u Bihaću. Pružamo vrhunske stomatološke usluge uz moderne tehnologije i stručni tim.",
+  image = "/og-image.jpg",
+  article = false
+} = Astro.props;
+
 const currentLang = Astro.url.pathname.split('/')[1] || 'bs';
+
+// Safe URL construction
+const siteUrl = 'https://medicooral.com';
+const currentPath = Astro.url.pathname;
+const canonicalURL = new URL(currentPath, siteUrl);
+const alternateURLbs = new URL(currentPath.replace(/^\/en/, '') || '/', siteUrl);
+const alternateURLen = new URL('/en' + currentPath.replace(/^\/bs/, ''), siteUrl);
+const ogImage = new URL(image.startsWith('http') ? image : image, siteUrl);
 ---
 
 <!doctype html>
 <html lang={currentLang} class="scroll-smooth font-secondary">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="MedicoOral-AS - Stomatološka ordinacija u Bihaću. Pružamo vrhunske stomatološke usluge uz moderne tehnologije i stručni tim.">
     <meta name="viewport" content="width=device-width" />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title} | MedicoOral</title>
+    <meta name="title" content={`${title} | MedicoOral`} />
+    <meta name="description" content={description} />
+    
+    <!-- Canonical and Alternate Languages -->
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="bs" href={alternateURLbs} />
+    <link rel="alternate" hreflang="en" href={alternateURLen} />
+    <link rel="alternate" hreflang="x-default" href={alternateURLbs} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={article ? 'article' : 'website'} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={`${title} | MedicoOral`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={currentLang === 'bs' ? 'bs_BA' : 'en_US'} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={`${title} | MedicoOral`} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImage} />
+    
+    <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <script>
-      const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, observerOptions);
-
-      document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('[data-animate]').forEach((element) => {
-          observer.observe(element);
-        });
-      });
-    </script>
+    
+    <!-- Additional Meta Tags -->
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="MedicoOral" />
   </head>
-  <body class="min-h-screen bg-white overflow-x-hidden">
+  <body>
     <slot />
   </body>
 </html>
