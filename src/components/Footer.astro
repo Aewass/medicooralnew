@@ -1,10 +1,10 @@
 ---
 import { 
-  CalendarCheck, 
   MapPin, 
   Phone, 
   Mail,
-  Facebook
+  Facebook,
+  Clock
 } from 'lucide-astro';
 import { translations } from '../i18n/translations';
 
@@ -28,15 +28,15 @@ const t = translations[currentLang].footer;
             <div class="w-12 h-1 bg-white/20 rounded-full mt-2"></div>
           </div>
 
-          <ul class="relative space-y-4">
-            <li class="flex items-center gap-3 text-white/90 group/item">
-              <CalendarCheck size={20} class="flex-shrink-0 transition-colors duration-300 group-hover/item:text-white" />
-              <span class="transition-colors duration-300 group-hover/item:text-white">{t.contact.hours}</span>
-            </li>
-            <li class="flex items-center gap-3 text-white/90 group/item">
-              <MapPin size={20} class="flex-shrink-0 transition-colors duration-300 group-hover/item:text-white" />
-              <span class="transition-colors duration-300 group-hover/item:text-white">{t.contact.address}</span>
-            </li>
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <Clock class="w-5 h-5 text-white/80" />
+              <span>{t.contact.hours}</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <MapPin class="w-5 h-5 text-white/80" />
+              <span>{t.contact.address}</span>
+            </div>
             <li class="flex items-center gap-3 text-white/90 group/item">
               <Phone size={20} class="flex-shrink-0 transition-colors duration-300 group-hover/item:text-white" />
               <a href="tel:037310745" class="hover:text-white transition-colors">
@@ -49,7 +49,7 @@ const t = translations[currentLang].footer;
                 {t.contact.email}
               </a>
             </li>
-          </ul>
+          </div>
         </div>
 
         <!-- Social Links -->
@@ -63,15 +63,15 @@ const t = translations[currentLang].footer;
             <div class="w-12 h-1 bg-white/20 rounded-full mt-2"></div>
           </div>
 
-          <div class="relative">
+          <div class="flex gap-4 relative z-10">
             <a 
-              href="https://www.facebook.com/medicooralas" 
-              target="_blank" 
+              href="https://www.facebook.com/medicooral.as" 
+              target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex p-3 text-white/90 hover:text-white bg-white/5 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-              aria-label="Facebook"
+              class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 cursor-pointer relative z-10"
+              aria-label="Visit our Facebook page"
             >
-              <Facebook size={24} />
+              <Facebook class="w-5 h-5 text-white pointer-events-none" />
             </a>
           </div>
         </div>

@@ -18,6 +18,7 @@ export const translations = {
       title: "Naše usluge",
       subtitle: "Šta nudimo",
       learnMore: "Saznajte više",
+      about: "o usluzi",
       items: [
         {
           title: "Stomatološki pregled",
@@ -294,6 +295,7 @@ export const translations = {
       title: "Our Services",
       subtitle: "What we offer",
       learnMore: "Learn more",
+      about: "about",
       items: [
         {
           title: "Dental Checkup",

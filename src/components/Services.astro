@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import { ArrowRight } from 'lucide-astro';
 import { translations } from '../i18n/translations';
 import checkupImg from '../assets/checkup.jpg';
 import implantImg from '../assets/implant.jpg';
@@ -67,12 +68,11 @@ const imageMap = {
                 </p>
                 <a 
                   href={`/${currentLang}/service/${service.slug}`}
-                  class="text-secondary font-medium inline-flex items-center gap-2 transition-all duration-300 hover:gap-4"
+                  class="text-secondary hover:text-secondary/80 font-semibold inline-flex items-center gap-2 transition-all duration-300 hover:gap-4"
+                  aria-label={`${t.learnMore} ${t.about} ${service.title}`}
                 >
                   {t.learnMore}
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                  </svg>
+                  <ArrowRight class="w-5 h-5" aria-hidden="true" />
                 </a>
               </div>
             </div>
