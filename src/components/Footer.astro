@@ -4,8 +4,7 @@ import {
   MapPin, 
   Phone, 
   Mail,
-  Facebook,
-  Instagram
+  Facebook
 } from 'lucide-astro';
 import { translations } from '../i18n/translations';
 
@@ -64,24 +63,15 @@ const t = translations[currentLang].footer;
             <div class="w-12 h-1 bg-white/20 rounded-full mt-2"></div>
           </div>
 
-          <div class="relative flex gap-4">
+          <div class="relative">
             <a 
               href="https://www.facebook.com/medicooralas" 
               target="_blank" 
               rel="noopener noreferrer"
-              class="p-3 text-white/90 hover:text-white bg-white/5 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+              class="inline-flex p-3 text-white/90 hover:text-white bg-white/5 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
               aria-label="Facebook"
             >
               <Facebook size={24} />
-            </a>
-            <a 
-              href="https://www.instagram.com/medicooralas/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="p-3 text-white/90 hover:text-white bg-white/5 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-              aria-label="Instagram"
-            >
-              <Instagram size={24} />
             </a>
           </div>
         </div>

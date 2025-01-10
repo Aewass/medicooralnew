@@ -261,26 +261,6 @@ export const translations = {
           description: "Digital X-ray diagnostics...",
           fullDescription: `...`,
         },
-        {
-          title: "Modern dental treatments for a perfect smile",
-          description:
-            "Oral surgery is a specialized branch of dentistry that encompasses various procedures focused on oral health.",
-        },
-        {
-          title: "Dental implantology with heart",
-          description:
-            'Dental implants, pioneers in BH with 30+ years of experience. We use the latest systems like "Schutz dental-Implant," "Dentium," "Swiden & Martina," and others.',
-        },
-        {
-          title: "Perfect prosthetics for a perfect smile",
-          description:
-            "We transform smiles with premium prosthetics. The experienced team of experts at MedicoOral-AS, with over 30 years of experience, provides personalized and quality prosthetic care.",
-        },
-        {
-          title: "Quality conservative dentistry for your health",
-          description:
-            "Using the latest methods in conservative dentistry, MedicoOral-AS cares for your oral health. Our expert team offers premium care and personalized treatments.",
-        },
       ],
     },
     about: {
