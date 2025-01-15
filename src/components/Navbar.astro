@@ -5,15 +5,15 @@ import LanguageSwitcher from './LanguageSwitcher.astro';
 import toothIcon from '../assets/tooth.svg';
 import { translations } from '../i18n/translations';
 
-const currentLang = Astro.url.pathname.split('/')[1] || 'bs';
+const currentLang = Astro.url.pathname.startsWith('/en') ? 'en' : 'bs';
 const t = translations[currentLang].nav;
 
 const links = [
-  { href: `/${currentLang}#services`, label: t.services },
-  { href: `/${currentLang}#about`, label: t.about },
-  { href: `/${currentLang}#history`, label: t.history },
-  { href: `/${currentLang}#team`, label: t.team },
-  { href: `/${currentLang}#contact`, label: t.contact },
+  { href: currentLang === 'en' ? `/en#services` : `/#services`, label: t.services },
+  { href: currentLang === 'en' ? `/en#about` : `/#about`, label: t.about },
+  { href: currentLang === 'en' ? `/en#history` : `/#history`, label: t.history },
+  { href: currentLang === 'en' ? `/en#team` : `/#team`, label: t.team },
+  { href: currentLang === 'en' ? `/en#contact` : `/#contact`, label: t.contact },
 ];
 ---
 

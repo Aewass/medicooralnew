@@ -15,30 +15,28 @@ import ErrorBoundary from '../../components/ErrorBoundary.astro';
 // This needs to be exported as a named export
 export async function getStaticPaths() {
   return [
-    { params: { lang: 'bs' } },
-    { params: { lang: 'en' } },
+    { params: { lang: 'en' } }
   ];
 }
 
-// Get the lang param
 const { lang } = Astro.params;
 
-// Optionally validate the lang parameter
-if (!['bs', 'en'].includes(lang)) {
-  return Astro.redirect('/bs'); // Redirect to default language if invalid
+// Redirect non-English paths to root (Bosnian)
+if (lang !== 'en') {
+  return Astro.redirect('/');
 }
 ---
 
-<Layout title="Medico Oral - AS">
-    <Navbar />
+<Layout title={lang === 'en' ? "Home" : "Početna"}>
+  <Navbar />
+  <main>
     <Hero />
     <Services />
     <About />
     <History />
     <Team />
     <Testimonials />
-    <Faq />
     <Contact />
-    <Footer />
-    <ErrorBoundary />
+  </main>
+  <Footer />
 </Layout> 
