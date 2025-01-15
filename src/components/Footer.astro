@@ -19,7 +19,9 @@ const t = translations[currentLang].footer;
       <div class="space-y-8">
         <!-- Contact Info -->
         <div class="relative group space-y-6">
-          <div class="absolute -inset-4 bg-white/5 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+          <div 
+            class="absolute -inset-4 bg-white/5 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none -z-10"
+          ></div>
           
           <div class="relative">
             <h3 class="text-2xl font-primary font-bold text-white">
@@ -37,24 +39,28 @@ const t = translations[currentLang].footer;
               <MapPin class="w-5 h-5 text-white/80" />
               <span>{t.contact.address}</span>
             </div>
-            <li class="flex items-center gap-3 text-white/90 group/item">
-              <Phone size={20} class="flex-shrink-0 transition-colors duration-300 group-hover/item:text-white" />
-              <a href="tel:037310745" class="hover:text-white transition-colors">
-                {t.contact.phone}
-              </a>
-            </li>
-            <li class="flex items-center gap-3 text-white/90 group/item">
-              <Mail size={20} class="flex-shrink-0 transition-colors duration-300 group-hover/item:text-white" />
-              <a href="mailto:medicooral.as@gmail.com" class="hover:text-white transition-colors">
-                {t.contact.email}
-              </a>
-            </li>
+            <a 
+              href="tel:+38737310745" 
+              class="flex items-center gap-3 text-white/90 hover:text-white transition-colors w-fit cursor-pointer"
+            >
+              <Phone size={20} class="flex-shrink-0" />
+              <span class="pointer-events-none">+387 37 310 745</span>
+            </a>
+            <a 
+              href="mailto:medicooral.as@gmail.com" 
+              class="flex items-center gap-3 text-white/90 hover:text-white transition-colors w-fit cursor-pointer"
+            >
+              <Mail size={20} class="flex-shrink-0" />
+              <span class="pointer-events-none">medicooral.as@gmail.com</span>
+            </a>
           </div>
         </div>
 
         <!-- Social Links -->
         <div class="relative group space-y-4">
-          <div class="absolute -inset-4 bg-white/5 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+          <div 
+            class="absolute -inset-4 bg-white/5 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none -z-10"
+          ></div>
           
           <div class="relative">
             <h3 class="text-2xl font-primary font-bold text-white">
