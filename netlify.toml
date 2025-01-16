@@ -6,18 +6,17 @@
   NODE_VERSION = "18"
 
 [[redirects]]
-  from = "/en/"
-  to = "/en"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/*/"
-  to = "/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = true
+
+[[redirects]]
+  from = "/en"
+  to = "/en/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+    [headers.values]
+    Link = "</en>; rel=preload"
