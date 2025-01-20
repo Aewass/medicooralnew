@@ -82,32 +82,10 @@ export const translations = {
           Naš tim će vas voditi kroz cijeli proces, od početne konsultacije do konačnog postavljanja, osiguravajući da vaši novi zubi ispunjavaju i funkcionalne i estetske zahtjeve.`,
         },
         {
-          title: "Rendgen",
+          title: "RTG",
           slug: "rendgen",
-          description:
-            "Digitalna rendgen dijagnostika za precizno planiranje tretmana.",
-          fullDescription: `Naša ordinacija je opremljena najsavremenijom digitalnom rendgen opremom koja omogućava:
-
-          - Preciznu 3D dijagnostiku
-          - Minimalno izlaganje zračenju
-          - Detaljnu analizu strukture kosti i zuba
-          - Planiranje implantoloških i drugih hirurških zahvata
-
-          Digitalna tehnologija nam omogućava da vam odmah pokažemo i objasnimo stanje vaših zuba i planiramo najbolji tretman.
-
-          Naša napredna dijagnostika je posebno vrijedna za:
-          - Planiranje implantoloških zahvata
-          - Dijagnostiku TMJ zgloba
-          - Otkrivanje skrivenih karijesa
-          - Planiranje ortodontskih tretmana
-          - Sveobuhvatnu procjenu oralnog zdravlja
-
-          Prednosti naše digitalne rendgen tehnologije:
-          - Trenutna dostupnost snimaka
-          - Poboljšana dijagnostička preciznost
-          - Smanjeno izlaganje zračenju
-          - Bolja komunikacija s pacijentom
-          - Digitalno pohranjivanje za praćenje napretka`,
+          description: "Advanced digital radiography for precise diagnostics.",
+          fullDescription: `Our RTG services utilize the latest in digital radiography technology...`,
         },
         {
           title: "Prosthetics",
@@ -342,6 +320,12 @@ export const translations = {
           We offer various types of implant solutions, including single implants, implant bridges, and All-on-4 solutions for edentulous jaws.
 
           Each treatment is personalized according to your needs, taking into account anatomy, aesthetic desires, and functional requirements.`,
+        },
+        {
+          title: "RTG",
+          slug: "rendgen",
+          description: "Advanced digital radiography for precise diagnostics.",
+          fullDescription: `Our RTG services utilize the latest in digital radiography technology...`,
         },
         {
           title: "Prosthetics",

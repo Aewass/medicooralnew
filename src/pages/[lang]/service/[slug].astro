@@ -9,44 +9,52 @@ import implant2Img from '../../../assets/implant2.jpg';
 import xrayImg from '../../../assets/xray.jpg';
 
 export function getStaticPaths() {
-  return [
-    {
-      params: { lang: 'bs', slug: 'stomatoloski-pregled' },
-      props: { service: translations.bs.services.items[0] }
-    },
-    {
-      params: { lang: 'bs', slug: 'implantologija' },
-      props: { service: translations.bs.services.items[1] }
-    },
-    {
-      params: { lang: 'bs', slug: 'protetika' },
-      props: { service: translations.bs.services.items[2] }
-    },
-    {
-      params: { lang: 'bs', slug: 'rendgen' },
-      props: { service: translations.bs.services.items[3] }
-    },
-    {
-      params: { lang: 'en', slug: 'dental-checkup' },
-      props: { service: translations.en.services.items[0] }
-    },
-    {
-      params: { lang: 'en', slug: 'implantology' },
-      props: { service: translations.en.services.items[1] }
-    },
-    {
-      params: { lang: 'en', slug: 'prosthetics' },
-      props: { service: translations.en.services.items[2] }
-    },
-    {
-      params: { lang: 'en', slug: 'xray' },
-      props: { service: translations.en.services.items[3] }
-    }
-  ];
+  const paths = [];
+  
+  console.log('Generating service paths...');
+  
+  // BS routes
+  translations.bs.services.items.forEach(service => {
+    console.log(`Adding BS path for service: ${service.slug}`);
+    paths.push({
+      params: { lang: 'bs', slug: service.slug },
+      props: { 
+        service,
+        lang: 'bs'
+      }
+    });
+  });
+
+  // EN routes
+  translations.en.services.items.forEach(service => {
+    console.log(`Adding EN path for service: ${service.slug}`);
+    paths.push({
+      params: { lang: 'en', slug: service.slug },
+      props: { 
+        service,
+        lang: 'en'
+      }
+    });
+  });
+
+  console.log('All generated paths:', paths.map(p => `/${p.params.lang}/service/${p.params.slug}`));
+  return paths;
 }
 
-const { service } = Astro.props;
 const { lang, slug } = Astro.params;
+const { service } = Astro.props;
+
+// Add debug logging
+console.log(`Requested URL params - lang: ${lang}, slug: ${slug}`);
+console.log('Service data:', service);
+
+// Find the service in translations as a fallback
+const currentTranslations = translations[lang as keyof typeof translations];
+const fallbackService = currentTranslations?.services.items.find(s => s.slug === slug);
+
+if (!service && fallbackService) {
+  console.log('Found service in fallback:', fallbackService);
+}
 
 // Image mapping
 const imageMap = {
@@ -63,63 +71,81 @@ const imageMap = {
 const serviceImage = imageMap[slug] || checkupImg;
 ---
 
-<Layout title={service.title}>
-  <main class="py-12 md:py-20">
-    <div class="w-full max-w-7xl mx-auto px-5">
-      <div class="max-w-4xl mx-auto">
-        <!-- Header -->
-        <div class="text-center mb-12 space-y-3">
-          <h1 class="text-4xl md:text-5xl font-primary font-bold text-primary">
-            {service.title}
-          </h1>
-          <div class="w-20 h-1.5 bg-secondary rounded-full mx-auto"></div>
-        </div>
-
-        <!-- Main Content -->
-        <div class="space-y-8">
-          <!-- Hero Image -->
-          <div class="relative group overflow-hidden">
-            <div class="absolute -inset-2 md:-inset-4 bg-secondary/10 rounded-[2.5rem] -rotate-6 scale-95 transition-transform duration-300 group-hover:rotate-0"></div>
-            <div class="absolute -inset-2 md:-inset-4 bg-primary/5 rounded-[2.5rem] rotate-3 scale-95 transition-transform duration-300 group-hover:rotate-0"></div>
-            
-            <div class="relative rounded-3xl overflow-hidden shadow-xl transition-all duration-300 group-hover:shadow-2xl">
-              <Image
-                src={serviceImage}
-                alt={service.title}
-                width={1200}
-                height={675}
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-            </div>
+<Layout title={service?.title || fallbackService?.title || 'Service'}>
+  {service || fallbackService ? (
+    <main class="py-12 md:py-20">
+      <div class="w-full max-w-7xl mx-auto px-5">
+        <div class="max-w-4xl mx-auto">
+          <!-- Header -->
+          <div class="text-center mb-12 space-y-3">
+            <h1 class="text-4xl md:text-5xl font-primary font-bold text-primary">
+              {(service || fallbackService)?.title}
+            </h1>
+            <div class="w-20 h-1.5 bg-secondary rounded-full mx-auto"></div>
           </div>
 
-          <!-- Text Content -->
-          <div class="prose prose-lg max-w-none">
-            <div class="space-y-2">
-              {service.fullDescription?.split('\n').filter(p => p.trim() !== '').map((paragraph) => (
-                <div class="relative group">
-                  <div class="absolute inset-0 bg-secondary/5 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-                  <p class="relative text-lg text-text-secondary/80 leading-relaxed p-2">
-                    {paragraph.trim()}
-                  </p>
-                </div>
-              ))}
+          <!-- Main Content -->
+          <div class="space-y-8">
+            <!-- Hero Image -->
+            <div class="relative group overflow-hidden">
+              <div class="absolute -inset-2 md:-inset-4 bg-secondary/10 rounded-[2.5rem] -rotate-6 scale-95 transition-transform duration-300 group-hover:rotate-0"></div>
+              <div class="absolute -inset-2 md:-inset-4 bg-primary/5 rounded-[2.5rem] rotate-3 scale-95 transition-transform duration-300 group-hover:rotate-0"></div>
+              
+              <div class="relative rounded-3xl overflow-hidden shadow-xl transition-all duration-300 group-hover:shadow-2xl">
+                <Image
+                  src={serviceImage}
+                  alt={(service || fallbackService)?.title}
+                  width={1200}
+                  height={675}
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+              </div>
             </div>
-          </div>
 
-          <!-- Back Button -->
-          <div class="pt-6 text-center">
-            <a 
-              href={`/${lang}/#services`}
-              class="inline-flex items-center gap-2 px-8 py-4 bg-secondary text-white rounded-full 
-                    hover:gap-4 transition-all duration-300 hover:bg-primary shadow-lg hover:shadow-xl group"
-            >
-              <ArrowLeft class="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" />
-              <span>{lang === 'bs' ? 'Nazad na početnu' : 'Back to home'}</span>
-            </a>
+            <!-- Text Content -->
+            <div class="prose prose-lg max-w-none">
+              <div class="space-y-2">
+                {((service || fallbackService)?.fullDescription?.split('\n').filter(p => p.trim() !== '') || []).map((paragraph) => (
+                  <div class="relative group">
+                    <div class="absolute inset-0 bg-secondary/5 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                    <p class="relative text-lg text-text-secondary/80 leading-relaxed p-2">
+                      {paragraph.trim()}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- Back Button -->
+            <div class="pt-12 text-center">
+              <a 
+                href={`/${lang}/#services`}
+                class="inline-flex items-center gap-2 px-8 py-4 bg-secondary text-white rounded-full 
+                      hover:gap-4 transition-all duration-300 hover:bg-primary shadow-lg hover:shadow-xl group"
+              >
+                <span>{lang === 'bs' ? 'Nazad na usluge' : 'Back to services'}</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
+    </main>
+  ) : (
+    <div class="min-h-screen flex items-center justify-center">
+      <div class="text-center">
+        <h1 class="text-4xl font-bold text-primary mb-4">
+          {lang === 'bs' ? 'Usluga nije pronađena' : 'Service Not Found'}
+        </h1>
+        <p class="text-gray-600 mb-8">
+          {lang === 'bs' ? 'Tražena usluga nije pronađena.' : 'The requested service could not be found.'}
+        </p>
+        <a 
+          href={`/${lang}/#services`}
+          class="inline-flex items-center px-6 py-3 bg-secondary text-white rounded-full hover:bg-primary transition-all duration-300"
+        >
+          {lang === 'bs' ? 'Nazad na usluge' : 'Back to Services'}
+        </a>
+      </div>
     </div>
-  </main>
+  )}
 </Layout> 
