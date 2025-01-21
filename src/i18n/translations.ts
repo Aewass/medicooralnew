@@ -7,6 +7,7 @@ export const translations = {
       history: "Historija",
       team: "Tim",
       contact: "Kontakt",
+      faq: "faq",
     },
     hero: {
       title: "Medico Oral",
@@ -82,63 +83,19 @@ export const translations = {
           Naš tim će vas voditi kroz cijeli proces, od početne konsultacije do konačnog postavljanja, osiguravajući da vaši novi zubi ispunjavaju i funkcionalne i estetske zahtjeve.`,
         },
         {
-          title: "RTG",
+          title: "RTG Dijagnostika",
           slug: "rendgen",
-          description: "Advanced digital radiography for precise diagnostics.",
-          fullDescription: `Our RTG services utilize the latest in digital radiography technology...`,
-        },
-        {
-          title: "Prosthetics",
-          slug: "prosthetics",
           description:
-            "Modern prosthetic solutions for a natural smile and complete functionality.",
-          fullDescription: `In the field of dental prosthetics, we are dedicated to creating natural and long-lasting solutions that will restore your confidence and functionality.
-
-          Our prosthetic solutions include:
-          - Individual crowns made from the highest quality materials
-          - Bridges for multiple tooth replacement
-          - Latest generation partial and complete dentures
-          - CAD/CAM technology for precise prosthetic work fabrication
-
-          Each prosthetic work is the result of precise planning and careful fabrication, where we pay special attention to aesthetics and natural appearance.
-
-          We use state-of-the-art materials that ensure:
-          - Long-term durability
-          - Natural appearance
-          - Optimal functionality
-          - Maximum comfort
-
-          Our team will guide you through the entire process, from initial consultation to final fitting, ensuring that your new teeth meet both functional and aesthetic requirements.`,
-        },
-        {
-          title: "X-Ray",
-          slug: "xray",
-          description:
-            "Digital X-ray diagnostics for precise treatment planning.",
-          fullDescription: `Our clinic is equipped with state-of-the-art digital X-ray equipment that enables:
-
-          - Precise 3D diagnostics
-          - Minimal radiation exposure
-          - Detailed analysis of bone and tooth structure
-          - Planning of implantological and other surgical procedures
-
-          Digital technology allows us to immediately show and explain the condition of your teeth and plan the best treatment.
-
-          Our advanced imaging is particularly valuable for:
-          - Planning implant procedures
-          - TMJ joint diagnostics
-          - Detection of hidden cavities
-          - Planning orthodontic treatments
-          - Comprehensive oral health assessment
-
-          Benefits of our digital X-ray technology:
-          - Instant image availability
-          - Enhanced diagnostic accuracy
-          - Reduced radiation exposure
-          - Better patient communication
-          - Digital storage for progress tracking
-
-          We use this technology as part of our commitment to providing the most accurate diagnoses and treatment plans for our patients.`,
+            "Digitalna RTG dijagnostika za precizno planiranje tretmana.",
+          fullDescription: `Naša ordinacija je opremljena savremenom RTG opremom koja omogućava preciznu dijagnostiku i planiranje tretmana.
+    
+          Digitalna tehnologija nam omogućava:
+          - Preciznu dijagnostiku
+          - Minimalno izlaganje zračenju
+          - Detaljnu analizu strukture zuba
+          - Planiranje stomatoloških zahvata
+    
+          Ova napredna tehnologija je ključna za uspješno planiranje implantoloških, hirurških i drugih stomatoloških zahvata, osiguravajući najbolje rezultate za naše pacijente.`,
         },
       ],
     },
@@ -269,6 +226,7 @@ export const translations = {
       about: "About",
       history: "History",
       team: "Team",
+      faq: "faq",
       contact: "Contact",
     },
     hero: {
@@ -320,12 +278,6 @@ export const translations = {
           We offer various types of implant solutions, including single implants, implant bridges, and All-on-4 solutions for edentulous jaws.
 
           Each treatment is personalized according to your needs, taking into account anatomy, aesthetic desires, and functional requirements.`,
-        },
-        {
-          title: "RTG",
-          slug: "rendgen",
-          description: "Advanced digital radiography for precise diagnostics.",
-          fullDescription: `Our RTG services utilize the latest in digital radiography technology...`,
         },
         {
           title: "Prosthetics",
