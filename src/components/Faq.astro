@@ -19,77 +19,57 @@ const t = translations[currentLang].faq;
     </div>
 
     <!-- FAQ Items -->
-    <div class="max-w-3xl mx-auto space-y-6">
-      {t.items.map((faq, index) => (
-        <div class="group">
-          <div class="relative">
-            <!-- Decorative elements -->
-            <div class="absolute -inset-2 bg-secondary/5 rounded-xl scale-95 opacity-0 transition-all duration-300 group-hover:opacity-100"></div>
-            
-            <!-- FAQ Item -->
-            <div class="relative bg-white rounded-xl shadow-md transition-all duration-300 group-hover:shadow-lg">
-              <button
-                class="faq-toggle w-full text-left px-6 py-4 focus:outline-none"
-                data-index={index}
-              >
-                <div class="flex justify-between items-center gap-4">
-                  <h3 class="font-primary font-semibold text-lg text-primary transition-colors duration-300 group-hover:text-secondary">
-                    {faq.question}
-                  </h3>
-                  <svg
-                    class="w-6 h-6 transform transition-transform duration-300 faq-icon text-secondary"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </div>
-              </button>
-              <div class="faq-content hidden px-6 pb-4">
-                <p class="text-text-secondary/80 leading-relaxed">{faq.answer}</p>
-              </div>
-            </div>
+    <div class="max-w-3xl mx-auto space-y-4">
+      {t.items.map((item) => (
+        <details class="group bg-white rounded-lg shadow-md overflow-hidden">
+          <summary class="flex items-center justify-between p-4 text-left cursor-pointer">
+            <span class="font-medium text-primary">{item.question}</span>
+            <svg 
+              class="w-5 h-5 text-secondary transition-transform duration-200 group-open:rotate-180" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="p-4 pt-0 text-text-secondary/80">
+            {item.answer}
           </div>
-        </div>
+        </details>
       ))}
     </div>
   </div>
 </section>
 
 <script>
-  function initFAQ() {
+  function setupFAQ() {
     const toggles = document.querySelectorAll('.faq-toggle');
     
     toggles.forEach(toggle => {
       toggle.addEventListener('click', () => {
-        const content = toggle.nextElementSibling as HTMLElement;
+        const content = toggle.nextElementSibling;
         const icon = toggle.querySelector('.faq-icon');
         
         // Close all other FAQs
         document.querySelectorAll('.faq-content').forEach(item => {
           if (item !== content) {
             item.classList.add('hidden');
-            const otherIcon = item.previousElementSibling?.querySelector('.faq-icon');
+            const otherIcon = item.previousElementSibling.querySelector('.faq-icon');
             otherIcon?.classList.remove('rotate-180');
           }
         });
         
         // Toggle current FAQ
-        content.classList.toggle('hidden');
+        content?.classList.toggle('hidden');
         icon?.classList.toggle('rotate-180');
       });
     });
   }
 
-  // Initialize on page load
-  initFAQ();
+  // Setup on initial load
+  setupFAQ();
 
-  // Re-initialize after page transitions
-  document.addEventListener('astro:page-load', initFAQ);
+  // Setup on view transitions
+  document.addEventListener('astro:page-load', setupFAQ);
 </script> 

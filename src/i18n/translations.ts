@@ -170,17 +170,17 @@ export const translations = {
     },
     faq: {
       title: "Česta Pitanja",
-      subtitle: "Odgovori na vaša pitanja",
+      subtitle: "FAQ",
       items: [
+        {
+          question: "Da li primate nove pacijente?",
+          answer:
+            "Da, redovno primamo nove pacijente. Pozovite nas da zakažete prvi pregled.",
+        },
         {
           question: "Koje usluge nudite?",
           answer:
             "Nudimo širok spektar stomatoloških usluga uključujući implantologiju, protetiku, oralnu kirurgiju, konzervativnu stomatologiju i estetsku stomatologiju.",
-        },
-        {
-          question: "Da li primate nove pacijente?",
-          answer:
-            "Da, uvijek smo otvoreni za nove pacijente. Možete nas kontaktirati telefonom ili putem kontakt forme na našoj web stranici.",
         },
         {
           question: "Koje vrste implantata koristite?",
