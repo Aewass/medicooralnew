@@ -40,36 +40,4 @@ const t = translations[currentLang].faq;
       ))}
     </div>
   </div>
-</section>
-
-<script>
-  function setupFAQ() {
-    const toggles = document.querySelectorAll('.faq-toggle');
-    
-    toggles.forEach(toggle => {
-      toggle.addEventListener('click', () => {
-        const content = toggle.nextElementSibling;
-        const icon = toggle.querySelector('.faq-icon');
-        
-        // Close all other FAQs
-        document.querySelectorAll('.faq-content').forEach(item => {
-          if (item !== content) {
-            item.classList.add('hidden');
-            const otherIcon = item.previousElementSibling.querySelector('.faq-icon');
-            otherIcon?.classList.remove('rotate-180');
-          }
-        });
-        
-        // Toggle current FAQ
-        content?.classList.toggle('hidden');
-        icon?.classList.toggle('rotate-180');
-      });
-    });
-  }
-
-  // Setup on initial load
-  setupFAQ();
-
-  // Setup on view transitions
-  document.addEventListener('astro:page-load', setupFAQ);
-</script> 
+</section> 
