@@ -2,7 +2,6 @@
 import { Send } from 'lucide-astro';
 import { translations } from '../i18n/translations';
 
-export const prerender = true;
 
 const currentLang = Astro.url.pathname.split('/')[1] || 'bs';
 const t = translations[currentLang].contact;
@@ -27,11 +26,12 @@ const t = translations[currentLang].contact;
         <!-- Form Container -->
         <div class="relative bg-white">
           <form 
-            name="contact" 
-            method="POST" 
-            action="/success" 
-            data-netlify="true"
-            netlify-honeypot="bot-field"
+          id="contactForm"
+          class="space-y-4 relative" 
+          name="contact2"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
           >
             <input type="hidden" name="form-name" value="contact" />
             
