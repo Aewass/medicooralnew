@@ -2,6 +2,8 @@
 import { Send } from 'lucide-astro';
 import { translations } from '../i18n/translations';
 
+export const prerender = true;
+
 const currentLang = Astro.url.pathname.split('/')[1] || 'bs';
 const t = translations[currentLang].contact;
 ---
