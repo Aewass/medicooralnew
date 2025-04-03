@@ -2,14 +2,12 @@
 import { Send } from 'lucide-astro';
 import { translations } from '../i18n/translations';
 
-
 const currentLang = Astro.url.pathname.split('/')[1] || 'bs';
 const t = translations[currentLang].contact;
 ---
 
 <section class="w-full py-20" id="contact">
   <div class="w-full max-w-7xl mx-auto px-5">
-    <!-- Header -->
     <div class="text-center mb-16 space-y-4">
       <span class="text-secondary text-sm font-medium tracking-wider uppercase">
         {t.subtitle}
@@ -20,21 +18,19 @@ const t = translations[currentLang].contact;
       <div class="w-20 h-1.5 bg-secondary rounded-full mx-auto"></div>
     </div>
 
-    <!-- Form -->
     <div class="max-w-2xl mx-auto">
       <div class="relative group overflow-hidden">
-        <!-- Form Container -->
         <div class="relative bg-white">
-          <form 
-          id="contactForm"
-          class="space-y-4 relative" 
-          name="contact"
-          method="POST"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
+          <form
+            id="contactForm"
+            class="space-y-4 relative"
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
           >
             <input type="hidden" name="form-name" value="contact" />
-            
+
             <p class="hidden">
               <label>
                 Don't fill this out if you're human: <input name="bot-field" />
@@ -81,4 +77,25 @@ const t = translations[currentLang].contact;
       </div>
     </div>
   </div>
-</section> 
+  <script>
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString(),
+      })
+        .then(() => {
+          console.log('Form successfully submitted');
+          // Optionally, display a success message to the user.
+          form.reset(); // Clear the form
+        })
+        .catch((error) => {
+          console.error('Form submission error:', error);
+          // Optionally, display an error message to the user.
+        });
+    });
+  </script>
+</section>
