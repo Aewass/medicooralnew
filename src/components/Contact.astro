@@ -24,8 +24,21 @@ const t = translations[currentLang].contact;
       <div class="relative group overflow-hidden">
         <!-- Form Container -->
         <div class="relative bg-white">
-          <form name="contact"  id="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true" data-netlify-recaptcha="true" class="space-y-6">
+          <form 
+            name="contact" 
+            method="POST" 
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            class="space-y-6"
+            id="contact-form"
+          >
+            <p class="hidden">
+              <label>
+                {t.form.dontFill}: <input name="bot-field" />
+              </label>
+            </p>
             <input type="hidden" name="form-name" value="contact" />
+            
             <div class="relative group/input">
               <input
                 type="text"
@@ -59,6 +72,7 @@ const t = translations[currentLang].contact;
               ></textarea>
             </div>
             <div data-netlify-recaptcha="true" class="captcha"></div>
+            <div id="form-message" class="hidden text-center p-4 rounded-xl"></div>
             <button
               type="submit"
               class="bg-secondary text-white px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-all hover:gap-3"
@@ -67,11 +81,43 @@ const t = translations[currentLang].contact;
               <Send class="w-5 h-5" />
             </button>
           </form>
-
-          
-
         </div>
       </div>
     </div>
   </div>
-</section> 
+</section>
+
+<script define:vars={{ t }}>
+  const form = document.querySelector('form[name="contact"]');
+  const formMessage = document.getElementById('form-message');
+
+  if (form && formMessage) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      try {
+        const formData = new FormData(form);
+        
+        // Change the fetch URL to use Netlify's form submission endpoint
+        const response = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString()
+        });
+
+        if (response.ok) {
+          formMessage.classList.remove('hidden');
+          formMessage.classList.add('bg-green-100', 'text-green-700');
+          formMessage.textContent = t.form.successMessage;
+          form.reset();
+        } else {
+          throw new Error('Form submission failed');
+        }
+      } catch (error) {
+        formMessage.classList.remove('hidden');
+        formMessage.classList.add('bg-red-100', 'text-red-700');
+        formMessage.textContent = t.form.errorMessage;
+      }
+    });
+  }
+</script> 

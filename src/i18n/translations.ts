@@ -202,6 +202,10 @@ export const translations = {
         email: "Vaš email",
         message: "Vaša poruka",
         submit: "Pošalji poruku",
+        successMessage: "Hvala vam na poruci! Javit ćemo vam se uskoro.",
+        errorMessage:
+          "Došlo je do greške prilikom slanja forme. Molimo pokušajte ponovo.",
+        dontFill: "Ne popunjavajte ovo ako ste čovjek",
       },
     },
     footer: {
@@ -437,6 +441,11 @@ export const translations = {
         email: "Your email",
         message: "Your message",
         submit: "Send message",
+        successMessage:
+          "Thank you for your message! We will get back to you soon.",
+        errorMessage:
+          "Sorry, there was an error submitting the form. Please try again.",
+        dontFill: "Don't fill this out if you're human",
       },
     },
     footer: {
