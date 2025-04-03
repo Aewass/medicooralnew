@@ -25,20 +25,12 @@ const t = translations[currentLang].contact;
         <!-- Form Container -->
         <div class="relative bg-white">
           <form 
-            name="contact"
-            method="POST"
+            name="contact" 
+            method="POST" 
             data-netlify="true"
-            netlify-honeypot="bot-field"
             class="space-y-6"
-            id="contact-form"
           >
             <input type="hidden" name="form-name" value="contact" />
-            
-            <p class="hidden">
-              <label>
-                {t.form.dontFill}: <input name="bot-field" />
-              </label>
-            </p>
             
             <div class="relative group/input">
               <input
@@ -72,8 +64,7 @@ const t = translations[currentLang].contact;
                        outline-none transition-all duration-300 bg-transparent resize-none"
               ></textarea>
             </div>
-            <div data-netlify-recaptcha="true" class="captcha"></div>
-            <div id="form-message" class="hidden text-center p-4 rounded-xl"></div>
+            
             <button
               type="submit"
               class="bg-secondary text-white px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-all hover:gap-3"
@@ -86,41 +77,4 @@ const t = translations[currentLang].contact;
       </div>
     </div>
   </div>
-</section>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('contact-form');
-    const formMessage = document.getElementById('form-message');
-
-    if (form && formMessage) {
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const formData = new FormData(form);
-        
-        fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(formData).toString()
-        })
-        .then(response => {
-          if (response.ok) {
-            formMessage.classList.remove('hidden');
-            formMessage.classList.add('bg-green-100', 'text-green-700');
-            formMessage.textContent = 'Thank you for your message! We will get back to you soon.';
-            form.reset();
-          } else {
-            throw new Error('Form submission failed');
-          }
-        })
-        .catch(error => {
-          formMessage.classList.remove('hidden');
-          formMessage.classList.add('bg-red-100', 'text-red-700');
-          formMessage.textContent = 'Sorry, there was an error submitting the form. Please try again.';
-          console.error('Error:', error);
-        });
-      });
-    }
-  });
-</script> 
+</section> 
