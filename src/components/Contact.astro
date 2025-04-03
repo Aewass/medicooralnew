@@ -21,60 +21,101 @@ const t = translations[currentLang].contact;
     <div class="max-w-2xl mx-auto">
       <div class="relative group overflow-hidden">
         <div class="relative bg-white">
+          <div id="message-status" class="fixed top-4 right-4 p-4 rounded-lg text-white transform transition-transform duration-300 translate-x-full">
+          </div>
+
           <form
-            id="contactForm"
-            class="space-y-4 relative"
             name="contact"
-            method="POST"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
+            id="contact-form"
+            class="space-y-4"
           >
             <input type="hidden" name="form-name" value="contact" />
-
-            <p class="hidden">
-              <label>
-                Don't fill this out if you're human: <input name="bot-field" />
-              </label>
-            </p>
-
-            <div id="formFields" class="space-y-4">
-              <div class="space-y-4">
-                <input
-                  type="text"
-                  name="name"
-                  placeholder={t.form.name}
-                  required
-                  class="w-full px-6 py-4 rounded-xl border-2 border-text-primary/10 focus:border-secondary 
-                         outline-none transition-all duration-300 bg-transparent"
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder={t.form.email}
-                  required
-                  class="w-full px-6 py-4 rounded-xl border-2 border-text-primary/10 focus:border-secondary 
-                         outline-none transition-all duration-300 bg-transparent"
-                />
-              </div>
-              <textarea
-                name="message"
-                placeholder={t.form.message}
+            
+            <div class="space-y-4">
+              <input
+                type="text"
+                name="name"
+                placeholder={t.form.name}
                 required
-                rows="4"
-                class="w-full px-6 py-4 rounded-xl border-2 border-text-primary/10 focus:border-secondary 
-                       outline-none transition-all duration-300 bg-transparent resize-none"
-              ></textarea>
-              <button
-                type="submit"
-                class="bg-secondary text-white px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-all hover:gap-3"
-              >
-                {t.form.submit}
-                <Send class="w-5 h-5" />
-              </button>
+                class="w-full px-6 py-4 rounded-xl border-2 border-text-primary/10 focus:border-secondary outline-none transition-all duration-300 bg-transparent"
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder={t.form.email}
+                required
+                class="w-full px-6 py-4 rounded-xl border-2 border-text-primary/10 focus:border-secondary outline-none transition-all duration-300 bg-transparent"
+              />
             </div>
+            <textarea
+              name="message"
+              placeholder={t.form.message}
+              required
+              rows="4"
+              class="w-full px-6 py-4 rounded-xl border-2 border-text-primary/10 focus:border-secondary outline-none transition-all duration-300 bg-transparent resize-none"
+            ></textarea>
+
+            <button
+              type="submit"
+              class="bg-secondary text-white px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-all hover:gap-3"
+            >
+              {t.form.submit}
+              <Send class="w-5 h-5" />
+            </button>
           </form>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+document.getElementById('contact-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const form = e.target;
+  const messageStatus = document.getElementById('message-status');
+  
+  try {
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+    
+    // Show sending status
+    showMessage('Sending...', 'bg-secondary');
+
+    const response = await fetch('/.netlify/functions/submit-form', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
+        'form-name': 'contact',
+        ...data
+      }).toString()
+    });
+
+    if (response.ok) {
+      // Success
+      showMessage('Message sent successfully!', 'bg-green-500');
+      form.reset();
+    } else {
+      throw new Error('Failed to send message');
+    }
+  } catch (error) {
+    // Error
+    showMessage('Failed to send message. Please try again.', 'bg-red-500');
+  }
+});
+
+function showMessage(text, className) {
+  const messageStatus = document.getElementById('message-status');
+  messageStatus.textContent = text;
+  messageStatus.className = `fixed top-4 right-4 p-4 rounded-lg text-white transform transition-transform duration-300 ${className}`;
+  messageStatus.style.transform = 'translateX(0)';
+  
+  // Hide message after 3 seconds
+  setTimeout(() => {
+    messageStatus.style.transform = 'translateX(100%)';
+  }, 3000);
+}
+</script>
