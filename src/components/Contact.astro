@@ -1,7 +1,7 @@
 ---
 import { Send } from 'lucide-astro';
 import { translations } from '../i18n/translations';
-
+export const prerender = true;
 const currentLang = Astro.url.pathname.split('/')[1] || 'bs';
 const t = translations[currentLang].contact;
 ---
@@ -77,25 +77,4 @@ const t = translations[currentLang].contact;
       </div>
     </div>
   </div>
-  <script>
-    const form = document.getElementById('contactForm');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(new FormData(form)).toString(),
-      })
-        .then(() => {
-          console.log('Form successfully submitted');
-          // Optionally, display a success message to the user.
-          form.reset(); // Clear the form
-        })
-        .catch((error) => {
-          console.error('Form submission error:', error);
-          // Optionally, display an error message to the user.
-        });
-    });
-  </script>
 </section>
