@@ -6,7 +6,7 @@ import netlify from "@astrojs/netlify/functions";
 // https://astro.build/config
 export default defineConfig({
   site: "https://medicooral-as.com",
-  output: "server",
+  output: "static",
   adapter: netlify({
     edgeMiddleware: true,
   }),
