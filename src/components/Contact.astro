@@ -25,21 +25,20 @@ const t = translations[currentLang].contact;
         <!-- Form Container -->
         <div class="relative bg-white">
           <form 
-            name="contact" 
-            method="POST" 
-            netlify
+            name="contact"
+            method="POST"
             data-netlify="true"
             netlify-honeypot="bot-field"
-            data-netlify-honeypot="bot-field"
             class="space-y-6"
             id="contact-form"
           >
+            <input type="hidden" name="form-name" value="contact" />
+            
             <p class="hidden">
               <label>
                 {t.form.dontFill}: <input name="bot-field" />
               </label>
             </p>
-            <input type="hidden" name="form-name" value="contact" />
             
             <div class="relative group/input">
               <input
@@ -89,54 +88,39 @@ const t = translations[currentLang].contact;
   </div>
 </section>
 
-<script define:vars={{ t }}>
-  const form = document.querySelector('form[name="contact"]');
-  const formMessage = document.getElementById('form-message');
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contact-form');
+    const formMessage = document.getElementById('form-message');
 
-  if (form && formMessage) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      // Disable submit button while submitting
-      const submitButton = form.querySelector('button[type="submit"]');
-      submitButton.disabled = true;
-
-      try {
+    if (form && formMessage) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
         const formData = new FormData(form);
         
-        // This is critical - we need to ensure form-name is included
-        formData.append("form-name", "contact");
-        
-        // Change to use AJAX submission with correct format
-        const response = await fetch('/', {
+        fetch('/', {
           method: 'POST',
-          body: new URLSearchParams(formData).toString(),
-          headers: { 
-            'Content-Type': 'application/x-www-form-urlencoded' 
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString()
+        })
+        .then(response => {
+          if (response.ok) {
+            formMessage.classList.remove('hidden');
+            formMessage.classList.add('bg-green-100', 'text-green-700');
+            formMessage.textContent = 'Thank you for your message! We will get back to you soon.';
+            form.reset();
+          } else {
+            throw new Error('Form submission failed');
           }
+        })
+        .catch(error => {
+          formMessage.classList.remove('hidden');
+          formMessage.classList.add('bg-red-100', 'text-red-700');
+          formMessage.textContent = 'Sorry, there was an error submitting the form. Please try again.';
+          console.error('Error:', error);
         });
-
-        if (response.ok) {
-          formMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700');
-          formMessage.classList.add('bg-green-100', 'text-green-700');
-          formMessage.textContent = t.form.successMessage;
-          form.reset();
-          
-          // Debug log - remove in production
-          console.log('Form submitted successfully');
-        } else {
-          console.error('Form submission error:', response.status);
-          throw new Error('Form submission failed');
-        }
-      } catch (error) {
-        formMessage.classList.remove('hidden', 'bg-green-100', 'text-green-700');
-        formMessage.classList.add('bg-red-100', 'text-red-700');
-        formMessage.textContent = t.form.errorMessage;
-        console.error('Error:', error);
-      } finally {
-        // Re-enable submit button
-        submitButton.disabled = false;
-      }
-    });
-  }
+      });
+    }
+  });
 </script> 
