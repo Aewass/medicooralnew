@@ -29,6 +29,7 @@ const t = translations[currentLang].contact;
             method="POST" 
             data-netlify="true"
             data-netlify-honeypot="bot-field"
+            action="/"
             class="space-y-6"
             id="contact-form"
           >
@@ -98,14 +99,20 @@ const t = translations[currentLang].contact;
       try {
         const formData = new FormData(form);
         
-        // Change the fetch URL to use Netlify's form submission endpoint
+        // Ensure form-name is included
+        formData.append("form-name", "contact");
+        
         const response = await fetch('/', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          headers: {
+            "Accept": "application/x-www-form-urlencoded;charset=UTF-8",
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+          },
           body: new URLSearchParams(formData).toString()
         });
 
         if (response.ok) {
+          // Success handling
           formMessage.classList.remove('hidden');
           formMessage.classList.add('bg-green-100', 'text-green-700');
           formMessage.textContent = t.form.successMessage;
@@ -114,9 +121,11 @@ const t = translations[currentLang].contact;
           throw new Error('Form submission failed');
         }
       } catch (error) {
+        // Error handling
         formMessage.classList.remove('hidden');
         formMessage.classList.add('bg-red-100', 'text-red-700');
         formMessage.textContent = t.form.errorMessage;
+        console.error('Error:', error);
       }
     });
   }
