@@ -23,6 +23,11 @@
   status = 200
 
 [[redirects]]
+  from = "/test-contact"
+  to = "/test-contact.html"
+  status = 200
+
+[[redirects]]
   from = "/test"
   to = "/test/"
   status = 301
