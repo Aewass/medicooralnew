@@ -46,7 +46,6 @@
     name = { required = true }
     email = { required = true }
     message = { required = true }
-    bot-field = { required = false }
 
 [[forms]]
   name = "test-form"
