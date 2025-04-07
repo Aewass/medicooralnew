@@ -1,20 +1,31 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Contact Form</title>
+  </head>
   <body>
     <form
       name="contact-form"
       method="POST"
       data-netlify="true"
-      action="/.netlify/functions/submission-created"
+      action="/success/"
     >
       <input type="hidden" name="form-name" value="contact-form" />
-      <input type="hidden" name="success_url" value="/success/" />
       <div class="hidden">
         <input name="bot-field" />
       </div>
-      <input type="text" name="name" />
-      <input type="email" name="email" />
-      <textarea name="message"></textarea>
+      <p>
+        <label>Name: <input type="text" name="name" required/></label>
+      </p>
+      <p>
+        <label>Email: <input type="email" name="email" required/></label>
+      </p>
+      <p>
+        <label>Message: <textarea name="message" required></textarea></label>
+      </p>
+      <p>
+        <button type="submit">Send</button>
+      </p>
     </form>
   </body>
 </html>
