@@ -24,8 +24,10 @@ const t = translations[currentLang].contact;
         <div class="relative bg-white">
           <!-- This comment helps Netlify detect the form during prerendering -->
           <!-- form name="contact-form" -->
-          <form name="contact-form" method="POST" data-netlify="true" action="/success/">
+          <!-- Use direct Netlify API endpoint for form submissions -->
+          <form name="contact-form" method="POST" action="/.netlify/functions/submission-created" data-netlify="true">
             <input type="hidden" name="form-name" value="contact-form" />
+            <input type="hidden" name="success_url" value="/success/" />
             <!-- Add a honeypot field to prevent spam -->
             <div class="hidden">
               <input name="bot-field" />

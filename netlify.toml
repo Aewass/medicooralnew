@@ -12,6 +12,14 @@
 [build.processing.html]
   pretty_urls = true
 
+# Special redirect for Netlify form handling - must be first!
+[[redirects]]
+  from = "/"
+  query = {form-name = ":formname"}
+  to = "/.netlify/forms/:formname"
+  status = 200
+  force = true
+
 # English route rule (higher priority)
 [[redirects]]
   from = "/en"
@@ -40,7 +48,7 @@
   to = "/test/"
   status = 301
 
-# Standard SPA redirect
+# Standard SPA redirect - now last priority
 [[redirects]]
   from = "/*"
   to = "/index.html"
