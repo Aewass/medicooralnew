@@ -1,8 +1,8 @@
 ---
 import { Send } from 'lucide-astro';
 import { translations } from '../i18n/translations';
-// Remove prerendering as it's causing issues with Netlify form processing
-// export const prerender = true;
+// We should actually keep prerendering to help Netlify detect the form
+export const prerender = true;
 const currentLang = Astro.url.pathname.split('/')[1] || 'bs';
 const t = translations[currentLang].contact;
 ---
@@ -22,7 +22,15 @@ const t = translations[currentLang].contact;
     <div class="max-w-2xl mx-auto">
       <div class="relative group overflow-hidden">
         <div class="relative bg-white">
-          <!-- SUPER SIMPLE FORM - COPY FROM TEST-FORM -->
+          <!-- Netlify form with proper attributes and pre-filled fields -->
+          <!-- This hidden form is for Netlify to detect during build -->
+          <form name="contact-form" data-netlify="true" netlify-honeypot="bot-field" hidden>
+            <input type="text" name="name" />
+            <input type="email" name="email" />
+            <textarea name="message"></textarea>
+          </form>
+          
+          <!-- Actual visible form -->
           <form name="contact-form" method="POST" data-netlify="true" action="/success/">
             <input type="hidden" name="form-name" value="contact-form" />
             
