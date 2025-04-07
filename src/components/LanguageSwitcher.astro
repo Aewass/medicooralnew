@@ -1,7 +1,5 @@
 ---
-import { getLang } from '../utils/getLang';
-
-const currentLang = getLang(Astro.url.pathname);
+const currentLang = Astro.url.pathname.startsWith('/en') ? 'en' : 'bs';
 ---
 
 <div class="flex items-center gap-2">
