@@ -1,0 +1,59 @@
+---
+// This is a minimal test page for Netlify Forms
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Form</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    form {
+      display: grid;
+      gap: 1rem;
+    }
+    input, textarea, button {
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+    button {
+      background: blue;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Netlify Form Test</h1>
+  <p>This is a minimal form to test Netlify Forms functionality.</p>
+  
+  <form name="minimal-test" method="POST" data-netlify="true" action="/success/">
+    <input type="hidden" name="form-name" value="minimal-test" />
+    
+    <div>
+      <label for="name">Name</label>
+      <input id="name" type="text" name="name" required />
+    </div>
+    
+    <div>
+      <label for="email">Email</label>
+      <input id="email" type="email" name="email" required />
+    </div>
+    
+    <div>
+      <label for="message">Message</label>
+      <textarea id="message" name="message" required></textarea>
+    </div>
+    
+    <button type="submit">Submit Test Form</button>
+  </form>
+</body>
+</html> 

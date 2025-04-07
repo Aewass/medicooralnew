@@ -6,9 +6,25 @@
 [build.environment]
   NODE_VERSION = "18"
 
+[build.processing]
+  skip_processing = false
+
+[build.processing.html]
+  pretty_urls = true
+
 [[redirects]]
   from = "/success"
   to = "/success/"
+  status = 301
+
+[[redirects]]
+  from = "/test-form"
+  to = "/test-form.html"
+  status = 200
+
+[[redirects]]
+  from = "/test"
+  to = "/test/"
   status = 301
 
 [[redirects]]
@@ -22,7 +38,7 @@
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
 
-# Explicitly declare the form
+# Explicitly declare the forms
 [[forms]]
   name = "contact-form"
   
@@ -31,3 +47,19 @@
     email = { required = true }
     message = { required = true }
     bot-field = { required = false }
+
+[[forms]]
+  name = "test-form"
+  
+  [forms.fields]
+    name = { required = true }
+    email = { required = true }
+    message = { required = true }
+
+[[forms]]
+  name = "minimal-test"
+  
+  [forms.fields]
+    name = { required = true }
+    email = { required = true }
+    message = { required = true }
