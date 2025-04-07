@@ -1,9 +1,35 @@
 ---
-export const prerender = true;
+// Remove prerendering to allow for form processing
+// export const prerender = true;
+import { translations } from '../i18n/translations';
+
+const currentLang = Astro.url.pathname.split('/')[1] || 'bs';
+const t = translations[currentLang]?.contact?.form || {};
 ---
 
-<div>
-  <h1>Thank you for your message!</h1>
-  <p>We'll get back to you soon.</p>
-  <a href="/">Return to homepage</a>
-</div> 
+<!DOCTYPE html>
+<html lang={currentLang || 'bs'} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{t.successTitle || 'Thank You'} | MedicoOral</title>
+    <link rel="icon" type="image/svg+xml" href="/tooth.svg">
+    <meta name="description" content="Thank you for contacting MedicoOral">
+  </head>
+  <body class="font-primary bg-white">
+    <div class="h-screen flex items-center justify-center">
+      <div class="max-w-md mx-auto text-center px-4">
+        <div class="mb-8 text-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h1 class="text-3xl font-bold text-primary mb-4">{t.successMessage || 'Thank you for your message!'}</h1>
+        <p class="text-text-secondary mb-8">{t.successDescription || "We'll get back to you soon."}</p>
+        <a href="/" class="bg-secondary text-white px-6 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-all hover:bg-primary">
+          {t.backToHome || 'Return to homepage'}
+        </a>
+      </div>
+    </div>
+  </body>
+</html> 
