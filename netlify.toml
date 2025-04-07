@@ -69,3 +69,19 @@
     name = { required = true }
     email = { required = true }
     message = { required = true }
+
+[[forms]]
+  name = "direct-test"
+  
+  [forms.fields]
+    name = { required = true }
+    email = { required = true }
+    message = { required = true }
+
+[[forms]]
+  name = "new-contact-2023"
+  
+  [forms.fields]
+    name = { required = true }
+    email = { required = true }
+    message = { required = true }
