@@ -20,11 +20,6 @@ export async function getStaticPaths() {
 
 const { lang } = Astro.params;
 
-// Redirect to the correct path without a trailing slash
-if (lang === 'en' && Astro.url.pathname.endsWith('/')) {
-  return Astro.redirect(Astro.url.pathname.slice(0, -1)); // Remove trailing slash
-}
-
 // If the language is not 'en', redirect to the root (Bosnian)
 if (lang !== 'en') {
   return Astro.redirect('/');
