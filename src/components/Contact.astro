@@ -28,21 +28,21 @@ const t = translations[currentLang].contact;
               <input
                 type="text"
                 name="name"
-                placeholder={t.namePlaceholder || "Vaše ime"}
+                placeholder={t.form.name || "Vaše ime"}
                 required
                 class="w-full px-6 py-4 rounded-xl border-2 border-text-primary/10 focus:border-secondary outline-none transition-all duration-300 bg-transparent"
               />
               <input
                 type="email"
                 name="email"
-                placeholder={t.emailPlaceholder || "Vaš email"}
+                placeholder={t.form.email || "Vaš email"}
                 required
                 class="w-full px-6 py-4 rounded-xl border-2 border-text-primary/10 focus:border-secondary outline-none transition-all duration-300 bg-transparent"
               />
             </div>
             <textarea
               name="message"
-              placeholder={t.messagePlaceholder || "Vaša poruka"}
+              placeholder={t.form.message || "Vaša poruka"}
               required
               rows="4"
               class="w-full my-4 px-6 py-4 rounded-xl border-2 border-text-primary/10 focus:border-secondary outline-none transition-all duration-300 bg-transparent resize-none"
@@ -52,7 +52,7 @@ const t = translations[currentLang].contact;
               type="submit"
               class="bg-secondary text-white px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-all hover:gap-3"
             >
-              {t.submitButton || "Pošalji poruku"}
+              {t.form.submit || "Pošalji poruku"}
               <Send class="w-5 h-5" />
             </button>
           </form>
