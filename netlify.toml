@@ -12,6 +12,14 @@
 [build.processing.html]
   pretty_urls = true
 
+# Language-specific redirects with higher priority
+[[redirects]]
+  from = "/en"
+  to = "/en/"
+  status = 301
+  force = true
+
+# Specific rules for successful routing
 [[redirects]]
   from = "/success"
   to = "/success/"
@@ -31,13 +39,6 @@
   from = "/test"
   to = "/test/"
   status = 301
-
-# Add specific rule for English path
-[[redirects]]
-  from = "/en"
-  to = "/en/"
-  status = 301
-  force = true
 
 # This catch-all redirect should be last
 [[redirects]]

@@ -9,11 +9,11 @@ const currentLang = Astro.url.pathname.startsWith('/en') ? 'en' : 'bs';
 const t = translations[currentLang].nav;
 
 const links = [
-  { href: currentLang === 'en' ? `/en#services` : `/#services`, label: t.services },
-  { href: currentLang === 'en' ? `/en#about` : `/#about`, label: t.about },
-  { href: currentLang === 'en' ? `/en#history` : `/#history`, label: t.history },
-  { href: currentLang === 'en' ? `/en#team` : `/#team`, label: t.team },
-  { href: currentLang === 'en' ? `/en#contact` : `/#contact`, label: t.contact },
+  { href: currentLang === 'en' ? `/en/#services` : `/#services`, label: t.services },
+  { href: currentLang === 'en' ? `/en/#about` : `/#about`, label: t.about },
+  { href: currentLang === 'en' ? `/en/#history` : `/#history`, label: t.history },
+  { href: currentLang === 'en' ? `/en/#team` : `/#team`, label: t.team },
+  { href: currentLang === 'en' ? `/en/#contact` : `/#contact`, label: t.contact },
 ];
 ---
 
@@ -21,7 +21,7 @@ const links = [
   <nav class="w-full max-w-7xl mx-auto px-5 h-20 flex items-center justify-between">
     <!-- Logo -->
     <a 
-      href={`/${currentLang === 'en' ? 'en' : ''}`} 
+      href={`/${currentLang === 'en' ? 'en/' : ''}`} 
       class="flex items-center gap-2 group"
       id="logoLink"
     >
