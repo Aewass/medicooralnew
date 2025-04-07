@@ -29,6 +29,7 @@ const t = translations[currentLang].contact;
             data-netlify="true"
             data-netlify-honeypot="bot-field"
             action="/success/"
+            enctype="application/x-www-form-urlencoded"
           >
             <input type="hidden" name="form-name" value="contact-form" />
             <div class="hidden">
@@ -71,3 +72,13 @@ const t = translations[currentLang].contact;
     </div>
   </div>
 </section>
+
+<script>
+  // Remove any client-side form handling that might be intercepting the submission
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contactForm');
+    // Remove any existing event listeners (if there are any)
+    const newForm = form.cloneNode(true);
+    form.parentNode.replaceChild(newForm, form);
+  });
+</script>
