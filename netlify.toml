@@ -12,14 +12,20 @@
 [build.processing.html]
   pretty_urls = true
 
-# Language-specific redirects with higher priority
+# Handle /en path to prevent redirect loops
 [[redirects]]
   from = "/en"
   to = "/en/"
   status = 301
   force = true
 
-# Specific rules for successful routing
+# Handle requests to /en/ directly
+[[redirects]]
+  from = "/en/*"
+  to = "/en/:splat"
+  status = 200
+
+# Regular redirects for other paths
 [[redirects]]
   from = "/success"
   to = "/success/"
@@ -40,7 +46,7 @@
   to = "/test/"
   status = 301
 
-# This catch-all redirect should be last
+# This catch-all should be last
 [[redirects]]
   from = "/*"
   to = "/index.html"

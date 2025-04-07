@@ -4,9 +4,13 @@ import { Menu, X } from 'lucide-astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import toothIcon from '../assets/tooth.svg';
 import { translations } from '../i18n/translations';
+import { getLang } from '../utils/getLang';
 
-const currentLang = Astro.url.pathname.startsWith('/en') ? 'en' : 'bs';
-const t = translations[currentLang].nav;
+// Use the utility function to get language
+const currentLang = getLang(Astro.url.pathname);
+
+// Ensure we have fallbacks
+const t = translations[currentLang]?.nav || translations.bs.nav;
 
 const links = [
   { href: currentLang === 'en' ? `/en/#services` : `/#services`, label: t.services },

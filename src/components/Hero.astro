@@ -3,9 +3,13 @@ import { translations } from '../i18n/translations';
 import { Image } from 'astro:assets';
 import { ArrowRight, ArrowDown } from 'lucide-astro';
 import heroImage from '../assets/heroimg.webp';
+import { getLang } from '../utils/getLang';
 
-const currentLang = Astro.url.pathname.split('/')[1] || 'bs';
-const t = translations[currentLang].hero;
+// Use the utility function to get language
+const currentLang = getLang(Astro.url.pathname);
+
+// Make sure we have a fallback if translations[currentLang] is undefined
+const t = translations[currentLang]?.hero || translations.bs.hero;
 ---
 
 <section class="relative w-full h-screen overflow-hidden">
