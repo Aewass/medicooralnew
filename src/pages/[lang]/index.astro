@@ -10,6 +10,7 @@ import Testimonials from '../../components/Testimonials.astro';
 import Faq from '../../components/Faq.astro';
 import Contact from '../../components/Contact.astro';
 import Footer from '../../components/Footer.astro';
+import { getLang } from '../../utils/getLang';
 
 // This needs to be exported as a named export
 export async function getStaticPaths() {
@@ -20,13 +21,20 @@ export async function getStaticPaths() {
 
 const { lang } = Astro.params;
 
-// If the language is not 'en', redirect to the root (Bosnian)
+// Make sure lang is 'en' and nothing else
 if (lang !== 'en') {
   return Astro.redirect('/');
 }
+
+// Use the utility to double-check the language from the URL
+const detectedLang = getLang(Astro.url.pathname);
+if (detectedLang !== 'en') {
+  // Something's wrong with the URL, redirect to the correct one
+  return Astro.redirect('/en/');
+}
 ---
 
-<Layout title={lang === 'en' ? "Home" : "Početna"}>
+<Layout title="Home">
   <Navbar />
   <main>
     <Hero />

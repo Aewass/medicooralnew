@@ -1,0 +1,9 @@
+# Redirects for the English version
+/en              /en/                301!
+/en/             /en/index.html      200!
+
+# Handle deep paths
+/en/*            /en/:splat          200!
+
+# Default Bosnian version
+/*               /index.html         200! 

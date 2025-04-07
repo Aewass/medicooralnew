@@ -12,17 +12,23 @@
 [build.processing.html]
   pretty_urls = true
 
-# Handle /en path to prevent redirect loops
+# Explicitly serve the English index page
 [[redirects]]
   from = "/en"
   to = "/en/"
   status = 301
   force = true
 
-# Handle requests to /en/ directly
+[[redirects]]
+  from = "/en/"
+  to = "/en/index.html"
+  status = 200
+  force = true
+
+# Explicitly serve the subpaths under /en/
 [[redirects]]
   from = "/en/*"
-  to = "/en/:splat"
+  to = "/en/:splat/index.html"
   status = 200
 
 # Regular redirects for other paths
@@ -52,11 +58,21 @@
   to = "/index.html"
   status = 200
 
+# Add cache control headers to prevent excessive caching
 [[headers]]
   for = "/*"
     [headers.values]
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Add specific headers for language paths
+[[headers]]
+  for = "/en/*"
+    [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Pragma = "no-cache"
+    Expires = "0"
 
 # Explicitly declare the forms
 [[forms]]
