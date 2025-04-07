@@ -24,13 +24,13 @@ const t = translations[currentLang].contact;
         <div class="relative bg-white">
           <form
             id="contactForm"
-            name="contact"
+            name="contact-form"
             method="POST"
             data-netlify="true"
             netlify-honeypot="bot-field"
-            action="/"
+            action="/success/"
           >
-            <input type="hidden" name="form-name" value="contact" />
+            <input type="hidden" name="form-name" value="contact-form" />
             <div class="hidden">
               <input name="bot-field" />
             </div>
