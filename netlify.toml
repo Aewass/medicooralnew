@@ -12,13 +12,6 @@
 [build.processing.html]
   pretty_urls = true
 
-# English route rule (higher priority)
-[[redirects]]
-  from = "/en"
-  to = "/en/"
-  status = 301
-  force = true
-
 # Simple redirects for specific URLs
 [[redirects]]
   from = "/success"
@@ -55,7 +48,6 @@
 # Explicitly declare the forms
 [[forms]]
   name = "contact-form"
-  honeypot = "bot-field"
   
   [forms.fields]
     name = { required = true }
