@@ -18,20 +18,19 @@
   to = "/success/"
   status = 301
 
+# Make sure the contact-form is accessible
 [[redirects]]
-  from = "/test-form"
-  to = "/test-form.html"
+  from = "/contact-form"
+  to = "/contact-form.html"
   status = 200
 
+# IMPORTANT: Allow Netlify to handle form submissions before the SPA redirect
 [[redirects]]
-  from = "/test-contact"
-  to = "/test-contact.html"
+  from = "/"
+  to = "/.netlify/functions/submission-created"
   status = 200
-
-[[redirects]]
-  from = "/test"
-  to = "/test/"
-  status = 301
+  force = true
+  conditions = {Content-Type = ["application/x-www-form-urlencoded"]}
 
 # Standard SPA redirect
 [[redirects]]
@@ -45,41 +44,9 @@
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
 
-# Explicitly declare the forms
+# Keep only the contact form definition
 [[forms]]
   name = "contact-form"
-  
-  [forms.fields]
-    name = { required = true }
-    email = { required = true }
-    message = { required = true }
-
-[[forms]]
-  name = "test-form"
-  
-  [forms.fields]
-    name = { required = true }
-    email = { required = true }
-    message = { required = true }
-
-[[forms]]
-  name = "minimal-test"
-  
-  [forms.fields]
-    name = { required = true }
-    email = { required = true }
-    message = { required = true }
-
-[[forms]]
-  name = "direct-test"
-  
-  [forms.fields]
-    name = { required = true }
-    email = { required = true }
-    message = { required = true }
-
-[[forms]]
-  name = "new-contact-2023"
   
   [forms.fields]
     name = { required = true }

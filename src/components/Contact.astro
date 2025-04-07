@@ -22,26 +22,20 @@ const t = translations[currentLang].contact;
     <div class="max-w-2xl mx-auto">
       <div class="relative group overflow-hidden">
         <div class="relative bg-white">
-          <!-- This hidden form is REQUIRED for Netlify to detect during build -->
-          <form name="contact-form" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
-            <input type="text" name="name" />
-            <input type="email" name="email" />
-            <textarea name="message"></textarea>
-            <input name="bot-field" />
-          </form>
-          
-          <!-- Actual visible form -->
-          <form name="contact-form" method="POST" data-netlify="true" action="/success/">
-            <input type="hidden" name="form-name" value="contact-form" />
-            <!-- Honeypot field to prevent spam -->
-            <p class="hidden">
-              <label>Don't fill this out if you're human: <input name="bot-field" /></label>
-            </p>
-            
+          <!-- This form will not be submitted directly, but used as a UI -->
+          <form 
+            id="contact-form-ui"
+            class="contact-form-ui"
+            name="contact-form-ui" 
+            method="POST" 
+            action="/success/"
+            onsubmit="return false;"
+          >
             <div class="space-y-4">
               <input
                 type="text"
                 name="name"
+                id="contact-name"
                 placeholder={t.form.name || "Vaše ime"}
                 required
                 class="w-full px-6 py-4 rounded-xl border-2 border-text-primary/10 focus:border-secondary outline-none transition-all duration-300 bg-transparent"
@@ -49,6 +43,7 @@ const t = translations[currentLang].contact;
               <input
                 type="email"
                 name="email"
+                id="contact-email"
                 placeholder={t.form.email || "Vaš email"}
                 required
                 class="w-full px-6 py-4 rounded-xl border-2 border-text-primary/10 focus:border-secondary outline-none transition-all duration-300 bg-transparent"
@@ -56,6 +51,7 @@ const t = translations[currentLang].contact;
             </div>
             <textarea
               name="message"
+              id="contact-message"
               placeholder={t.form.message || "Vaša poruka"}
               required
               rows="4"
@@ -64,6 +60,7 @@ const t = translations[currentLang].contact;
 
             <button
               type="submit"
+              id="contact-submit"
               class="bg-secondary text-white px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-all hover:gap-3"
             >
               {t.form.submit || "Pošalji poruku"}
@@ -77,6 +74,48 @@ const t = translations[currentLang].contact;
 </section>
 
 <script>
-  // Let Netlify handle the form submission natively
-  // No JavaScript form handling to interfere with Netlify's processing
+  // This script will handle form submission by populating the static contact-form.html
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contact-form-ui');
+    const submitButton = document.getElementById('contact-submit');
+
+    if (form && submitButton) {
+      submitButton.addEventListener('click', async (e) => {
+        e.preventDefault();
+        
+        // Validate the form
+        const nameField = document.getElementById('contact-name') as HTMLInputElement;
+        const emailField = document.getElementById('contact-email') as HTMLInputElement;
+        const messageField = document.getElementById('contact-message') as HTMLTextAreaElement;
+        
+        if (!nameField?.value || !emailField?.value || !messageField?.value) {
+          return; // Form validation will handle this
+        }
+        
+        // Create data to submit
+        const formData = new URLSearchParams();
+        formData.append('form-name', 'contact-form');
+        formData.append('name', nameField.value);
+        formData.append('email', emailField.value);
+        formData.append('message', messageField.value);
+        
+        try {
+          // Submit the form data to the static contact form endpoint
+          const response = await fetch('/contact-form', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: formData.toString()
+          });
+          
+          // Redirect to success page
+          window.location.href = '/success/';
+        } catch (error) {
+          console.error('Error submitting form:', error);
+          // You could add error handling UI here
+        }
+      });
+    }
+  });
 </script>
